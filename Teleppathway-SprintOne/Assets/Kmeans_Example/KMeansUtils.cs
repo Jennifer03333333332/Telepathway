@@ -73,8 +73,8 @@ public static class KMeans {
         int[] centroidIdx = new int[clusterCount];
         int[] clusterItemCount = new int[clusterCount];
 
-        // Perform the clustering  && iteration < maxIterations
-        while (hasChanges ) {
+        // Perform the clustering  
+        while (hasChanges && iteration < maxIterations) {
             clusterItemCount = new int[clusterCount];
             totalDistance = CalculateClusteringInformation(data, clustering, ref means, ref centroidIdx, clusterCount, ref clusterItemCount);
             hasChanges = AssignClustering(data, clustering, centroidIdx, clusterCount);
@@ -101,7 +101,12 @@ public static class KMeans {
         var clustering = new int[numData];
 
         for (int i = 0; i < numData; ++i)
-            clustering[i] = rnd.Next(0, clusterCount);
+        {
+            int temp = rnd.Next(0, clusterCount);
+            //Debug.Log(temp);   
+            clustering[i] = temp;
+        }
+            
         
 
         return clustering;

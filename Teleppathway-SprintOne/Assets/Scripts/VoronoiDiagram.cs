@@ -54,6 +54,11 @@ public class VoronoiDiagram : MonoBehaviour
 
         return points;
     }
+    //For each cluster, calculate the variance
+    private void CalculateVariance()
+    {
+
+    }
 
     // Here is a very simple way to display the result using a simple bresenham line algorithm
     // Just attach this script to a quad
@@ -76,11 +81,13 @@ public class VoronoiDiagram : MonoBehaviour
         this.GetComponent<Renderer>().material.mainTexture = tx;
     }
 
-    // Bresenham line algorithm
+    
     private void DrawLine(Vector2f p0, Vector2f p1, Texture2D tx, Color c, int offset = 0)
     {
         DrawLine_xiaolinwu(p0, p1, tx, c, offset);
     }
+
+    // Bresenham line algorithm
     private void DrawLine_Bresenham(Vector2f p0, Vector2f p1, Texture2D tx, Color c, int offset = 0)
     {
         int x0 = (int)p0.x;
@@ -117,6 +124,7 @@ public class VoronoiDiagram : MonoBehaviour
     {
         rasterize_line_xiaolinwu(p0.x, p0.y, p1.x, p1.y, c);
     }
+
     //inline functions for xiaolinwu
     private float ipart(float x)
     {

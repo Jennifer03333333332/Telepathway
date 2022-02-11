@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class SortFlower : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject flowersparent;
-    public GameObject flowerPrefeb;
+    public GameObject seedsParent;
+    public GameObject SeedPrefeb;
+    public GameObject flowerParent;
+    public GameObject[] FlowerPrefeb;
     private KMeansResults result;
     public int Kvalue;
     public GameObject Slier;
     public GameObject inputx, inputy;
     List<GameObject> flowers = new List<GameObject>();
     public Text Kvaluetext, XText, YText;
+    double[][] means;
+    int chooseintialK = 0;
     void Start()
     {
         //flowers = this.gameObject.transform.GetChild();
@@ -32,28 +36,34 @@ public class SortFlower : MonoBehaviour
     public void StartKmeans()
     {
         flowers.Clear();
-        foreach (Transform child in transform)
+        foreach (Transform child in flowerParent.transform)
+        {
+            Destroy(child.gameObject);
+
+        }
+        foreach (Transform child in seedsParent.transform)
         {         
                 flowers.Add(child.gameObject);
             
         }
 
         Kvalue = (int)Slier.GetComponent<Slider>().value;
-        result = KMeans.Cluster(flowers.ToArray(), Kvalue, 1000, 101);
+        result = KMeans.Cluster(flowers.ToArray(), Kvalue, 1000, 1);
+        seedsParent.SetActive(false);
         for (int i = 0; i < result.clusters.Length; i++)
         {
-            Color color = Color.HSVToRGB(1f * i / result.clusters.Length, 1f, 1f);
             for (int j = 0; j < result.clusters[i].Length; j++)
             {
-
-                flowers[result.clusters[i][j]].GetComponent<MeshRenderer>().material.color = color;
+                GameObject f= Instantiate(FlowerPrefeb[i], flowers[result.clusters[i][j]].transform.position, flowers[result.clusters[i][j]].transform.rotation, flowerParent.transform);
+                f.transform.localScale = new Vector3(5, 5, 5);
+                //flowers[result.clusters[i][j]].GetComponent<MeshRenderer>().material.color = color;
             }
         }
     }
 
     public void CreateNewPoint()
     {
-        Instantiate(flowerPrefeb, new Vector3(inputx.GetComponent<Slider>().value, 0.3f, inputy.GetComponent<Slider>().value), Quaternion.identity,flowersparent.transform);
+        Instantiate(SeedPrefeb, new Vector3(inputx.GetComponent<Slider>().value, 0.3f, inputy.GetComponent<Slider>().value), Quaternion.identity, seedsParent.transform);
         
         
 
