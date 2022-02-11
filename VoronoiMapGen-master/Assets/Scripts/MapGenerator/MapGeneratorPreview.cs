@@ -40,7 +40,8 @@ public partial class MapGeneratorPreview : MonoBehaviour
 
     public void Start()
     {
-        StartCoroutine(GenerateMapAsync());
+        StartCoroutine(GenerateMapAsync()); //origin jennifer
+        //StartCoroutine(GenerateMapAsyncIteration());
     }
 
     public IEnumerator GenerateMapAsync()
@@ -48,12 +49,75 @@ public partial class MapGeneratorPreview : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GenerateMap();
     }
+    //Jennifer
+    public IEnumerator GenerateMapAsyncIteration()
+    {
+        yield return new WaitForSeconds(1f);
 
+        var points = GetPoints();
+        for (int i = 0;i< relaxationIterations;i++)
+        {
+            var startTime = DateTime.Now;
+            
+            Debug.Log("how many points:" + points.Count);
+
+            var time = DateTime.Now;
+            var voronoi = new Delaunay.Voronoi(points, null, new Rect(0, 0, meshSize, meshSize), relaxationIterations);
+            Debug.Log(string.Format("Voronoi Generated: {0:n0}ms", DateTime.Now.Subtract(time).TotalMilliseconds));
+
+            time = DateTime.Now;
+            heightMapSettings.noiseSettings.seed = seed;
+            var heightMap = HeightMapGenerator.GenerateHeightMap(meshSize, meshSize, heightMapSettings, Vector2.zero);
+            Debug.Log(string.Format("Heightmap Generated: {0:n0}ms", DateTime.Now.Subtract(time).TotalMilliseconds));
+
+            time = DateTime.Now;
+            var mapGraph = new MapGraph(voronoi, heightMap, snapDistance);
+            Debug.Log(string.Format("Finished Generating Map Graph: {0:n0}ms with {1} nodes", DateTime.Now.Subtract(startTime).TotalMilliseconds, mapGraph.nodesByCenterPosition.Count));
+
+            time = DateTime.Now;
+            MapGenerator.GenerateMap(mapGraph);
+            Debug.Log(string.Format("Map Generated: {0:n0}ms", DateTime.Now.Subtract(time).TotalMilliseconds));
+
+
+            if (previewType == PreviewType.HeightMap)
+            {
+                OnMeshDataReceived(MapMeshGenerator.GenerateMesh(mapGraph, heightMap, meshSize));
+                UpdateTexture(TextureGenerator.TextureFromHeightMap(heightMap));
+            }
+            if (previewType == PreviewType.Map)
+            {
+                time = DateTime.Now;
+                OnMeshDataReceived(MapMeshGenerator.GenerateMesh(mapGraph, heightMap, meshSize));
+                Debug.Log(string.Format("Mesh Generated: {0:n0}ms", DateTime.Now.Subtract(time).TotalMilliseconds));
+
+                time = DateTime.Now;
+                var texture = MapTextureGenerator.GenerateTexture(mapGraph, meshSize, textureSize, colours, drawNodeBoundries, drawDelauneyTriangles, drawNodeCenters);
+                Debug.Log(string.Format("Texture Generated: {0:n0}ms", DateTime.Now.Subtract(time).TotalMilliseconds));
+
+                UpdateTexture(texture);
+            }
+            //Jennifer
+            List<Vector3> flowerPoints = FlowersGeneration.getFlowersPoints(mapGraph);
+            if (FlowersFolder.activeSelf) FlowersFolder.SendMessage("CreateFlowers", flowerPoints);
+            //if(FlowersFolder.activeSelf) FlowersFolder.SendMessage("createFlowersBy2DPoints", points);
+
+            Debug.Log(string.Format("Finished Generating World: {0:n0}ms with {1} nodes", DateTime.Now.Subtract(startTime).TotalMilliseconds, mapGraph.nodesByCenterPosition.Count));
+            //For iteration
+            for (int ind = 0; ind < points.Count; ind++)
+            {
+                points[ind] = new Vector2(points[ind].x + 50, points[ind].y);
+            }
+            yield return new WaitForSeconds(2f);
+
+        }
+    }
     public void GenerateMap()
     {
 
         var startTime = DateTime.Now;
         var points = GetPoints();
+        Debug.Log("how many points:"+points.Count);
+        if (FlowersFolder.activeSelf) FlowersFolder.SendMessage("createFlowersBy2DPoints", points);
 
         var time = DateTime.Now;
         var voronoi = new Delaunay.Voronoi(points, null, new Rect(0, 0, meshSize, meshSize), relaxationIterations);
@@ -92,7 +156,7 @@ public partial class MapGeneratorPreview : MonoBehaviour
         }
         //Jennifer
         List<Vector3> flowerPoints = FlowersGeneration.getFlowersPoints(mapGraph);
-        FlowersFolder.SendMessage("CreateFlowers", flowerPoints);
+        if(FlowersFolder.activeSelf) FlowersFolder.SendMessage("CreateFlowers", flowerPoints);
 
         Debug.Log(string.Format("Finished Generating World: {0:n0}ms with {1} nodes", DateTime.Now.Subtract(startTime).TotalMilliseconds, mapGraph.nodesByCenterPosition.Count));
     }

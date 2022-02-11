@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InstantiateFlowers : MonoBehaviour
 {
-    
+    public GameObject showPointsCube;
     [System.Serializable]
     public struct FlowerType
     {
@@ -44,5 +44,13 @@ public class InstantiateFlowers : MonoBehaviour
             i++;
         }
         return i;
+    }
+
+    public void createFlowersBy2DPoints(List<Vector2> points)
+    {
+        foreach (var node2d in points)
+        {
+            GameObject Obj = Instantiate(showPointsCube, new Vector3(node2d.x, 25f, node2d.y), Quaternion.Euler(0, 0, 0), transform);
+        }
     }
 }
