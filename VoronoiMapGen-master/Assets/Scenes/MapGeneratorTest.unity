@@ -252,7 +252,7 @@ MonoBehaviour:
   heightMapSettings: {fileID: 11400000, guid: b6e6436f8dde6ba4ea4ad919e66b2f50, type: 2}
   seed: 6
   autoUpdate: 0
-  meshSize: 200
+  meshSize: 300
   textureSize: 2048
   drawNodeBoundries: 1
   drawDelauneyTriangles: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   - type: 4
     color: {r: 0.4784314, g: 0.49411768, b: 0.47450984, a: 1}
   pointGeneration: 1
-  pointSpacing: 50
+  pointSpacing: 3
   relaxationIterations: 3
   snapDistance: 1
   meshFilter: {fileID: 90414407}
@@ -649,7 +649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1137336609
 Transform:
   m_ObjectHideFlags: 0
