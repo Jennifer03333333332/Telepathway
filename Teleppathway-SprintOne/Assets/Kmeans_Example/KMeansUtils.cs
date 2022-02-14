@@ -64,13 +64,14 @@ public static class KMeans {
         double totalDistance = 0;
         int numData = data.Length;
         int numAttributes = data[0].Length;
-
+        //Jennifer
+        int[] selectedMeans = {2,4,5};
         // Create a random initial clustering assignment
         int[] clustering = InitializeClustering(numData, clusterCount, seed);
 
         // Create cluster means and centroids
         double[][] means = CreateMatrix(clusterCount, numAttributes);
-        int[] centroidIdx = new int[clusterCount];
+        int[] centroidIdx = new int[clusterCount];//clusterCount : k
         int[] clusterItemCount = new int[clusterCount];
 
         // Perform the clustering  
@@ -102,15 +103,50 @@ public static class KMeans {
 
         for (int i = 0; i < numData; ++i)
         {
-            int temp = rnd.Next(0, clusterCount);
+            int temp = rnd.Next(0, clusterCount);//from [0, clusterCount] pick one number
             //Debug.Log(temp);   
             clustering[i] = temp;
         }
-            
+        //clustering[种子的index] = 类的index
         
 
         return clustering;
     }
+
+    //Bokang's thinking : select our own means, then calculate the cluster,then let them calculate the new mean
+
+    //Jennifer
+    //Get initial Means
+    private static int[] IntialMeans(int K)
+    {
+        var meansArray = new int[K];
+
+        //maybe ray tracing
+        //meansArray[...] = ...
+        return meansArray;
+    }
+
+    //given means, return clusters
+    private static int[] CalculateIntialCluster(int[] meansArray, int numData, int clusterCount)
+    {
+        var clustering = new int[numData];
+        for (int node = 0; node < numData; node++)
+        {
+            float norm = float.MaxValue;
+            //Calculate each length
+            foreach (var mean in meansArray)
+            {
+                Vector3 meanPos, thisNodePos;//Need to get the position by index
+                if (norm > (thisNodePos - meanPos).magnitude)
+                {
+                    norm = (thisNodePos - meanPos).magnitude;
+                    clustering[node] = mean;
+                }
+            }
+        }
+        return clustering;
+    }
+
 
     private static double[][] CreateMatrix(int rows, int columns) {
         var matrix = new double[rows][];
