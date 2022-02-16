@@ -30,12 +30,15 @@ public class PlantSeed : MonoBehaviour, IPointerDownHandler
         {
             clicked = 0;
             clicktime = 0;
-            Debug.Log("Double CLick: ");
             Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Instantiate(SeedPrefeb, new Vector3(hit.point.x,1,hit.point.z), Quaternion.identity, seedsParent.transform);
+                if (hit.transform.gameObject.tag == "Garden")
+                {
+                    Instantiate(SeedPrefeb, new Vector3(hit.point.x, 1, hit.point.z), Quaternion.identity, seedsParent.transform);
+                }
+                
             }
 
         }
