@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         {
             K = (int)KSlider.GetComponent<Slider>().value;
             SortFlower.GetComponent<SortFlower>().Kvalue = K;
+            SortFlower.GetComponent<SortFlower>().means=  new double[K][];
         }
         step++;
         if (step < UISteps.Length)

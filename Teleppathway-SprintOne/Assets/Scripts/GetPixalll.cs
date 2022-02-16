@@ -14,7 +14,7 @@ public class GetPixalll : MonoBehaviour
     void Start()
     {
         pixels = texture.GetPixels(0);        
-        result = KMeans.Cluster(pixels, 9, 1000, 101);
+        result = KMeans.Cluster(pixels, 6, 1000, 101);
         Debug.Log(result.clusters[0].Length);
         Debug.Log(result.clusters[1].Length);
         int[][] resultcluster = result.clusters;
