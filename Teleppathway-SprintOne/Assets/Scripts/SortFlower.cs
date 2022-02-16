@@ -2,39 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SortFlower : MonoBehaviour
+public class SortFlower : MonoBehaviour, IPointerDownHandler
 {
     public GameObject FlowerFolder;//Jennifer
     // Start is called before the first frame update
     public GameObject seedsParent;
-    public GameObject SeedPrefeb;
     public GameObject flowerParent;
     public GameObject[] FlowerPrefeb;
     private KMeansResults result;
     public int Kvalue;
-    public GameObject Slier;
-    public GameObject inputx, inputy;
     public static List<GameObject> flowers = new List<GameObject>();
-    public Text Kvaluetext, XText, YText;
     double[][] means;
     int chooseintialK = 0;
+    public GameObject NextStepButton;
 
     
 
     void Start()
     {
-        //flowers = this.gameObject.transform.GetChild();
-        Kvalue = (int) Slier.GetComponent<Slider>().value;
+
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        Kvaluetext.text = "Kvalue: " + Slier.GetComponent<Slider>().value;
-        XText.text = "X: " + inputx.GetComponent<Slider>().value;
-        YText.text = "Y: " + inputy.GetComponent<Slider>().value;
+
     }
 
     public void StartKmeans()
@@ -53,7 +48,7 @@ public class SortFlower : MonoBehaviour
             
         }
 
-        Kvalue = (int)Slier.GetComponent<Slider>().value;
+        //Kvalue = (int)Slier.GetComponent<Slider>().value;
         result = KMeans.Cluster(flowers.ToArray(), Kvalue, 1000, 1);
         seedsParent.SetActive(false);
         for (int i = 0; i < result.clusters.Length; i++)
@@ -79,9 +74,30 @@ public class SortFlower : MonoBehaviour
         //FlowerFolder.SendMessage("GenerateVMap");
     }
 
-    public void CreateNewPoint()
+    public void OnPointerDown(PointerEventData data)
     {
-        Instantiate(SeedPrefeb, new Vector3(inputx.GetComponent<Slider>().value, 1f, inputy.GetComponent<Slider>().value), Quaternion.identity, seedsParent.transform);
+
+        if (chooseintialK<Kvalue&&GameManager.Instance.step==2)
+        {
+            
+            Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Seed")
+                {
+                    hit.transform.gameObject.SetActive(false);
+                    GameObject f=Instantiate(FlowerPrefeb[chooseintialK], hit.transform.position, Quaternion.identity, flowerParent.transform);
+                    f.transform.localScale = new Vector3(5, 5, 5);
+                    chooseintialK++;
+                }
+
+            }
+            if (chooseintialK == Kvalue && GameManager.Instance.step == 2)
+            {
+                NextStepButton.SetActive(true);
+            }
+        }
         
         
 

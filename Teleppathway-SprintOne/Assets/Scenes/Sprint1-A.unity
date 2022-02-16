@@ -147,14 +147,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2466296}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b2c48735b8ecda4b8f381cc99ee6de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FlowerFolder: {fileID: 0}
   seedsParent: {fileID: 1973755022}
-  SeedPrefeb: {fileID: 5247531149250211665, guid: 161a8e410a4af0b4e84111edfb1075fc, type: 3}
   flowerParent: {fileID: 126093676}
   FlowerPrefeb:
   - {fileID: 919132149155446097, guid: fdb784bb73234d74f93802eb54417edb, type: 3}
@@ -167,12 +166,7 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: c6a8c15dd0080c544af378cda241aaf8, type: 3}
   - {fileID: 919132149155446097, guid: cb570b4954998f5419ffab65c32c2a8b, type: 3}
   Kvalue: 0
-  Slier: {fileID: 0}
-  inputx: {fileID: 0}
-  inputy: {fileID: 0}
-  Kvaluetext: {fileID: 0}
-  XText: {fileID: 0}
-  YText: {fileID: 0}
+  NextStepButton: {fileID: 166586994}
 --- !u!4 &2466298
 Transform:
   m_ObjectHideFlags: 0
@@ -1023,7 +1017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &166586995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3242,6 +3236,8 @@ MonoBehaviour:
   - {fileID: 1195667387}
   Garden: {fileID: 964855099}
   KSlider: {fileID: 346738043}
+  SortFlower: {fileID: 2466296}
+  step: 0
   K: 0
 --- !u!4 &596142886
 Transform:
@@ -4394,7 +4390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlowerFolder: {fileID: 0}
   seedsParent: {fileID: 503216680}
-  SeedPrefeb: {fileID: 5247531149250211665, guid: 161a8e410a4af0b4e84111edfb1075fc, type: 3}
   flowerParent: {fileID: 258695104}
   FlowerPrefeb:
   - {fileID: 919132149155446097, guid: fdb784bb73234d74f93802eb54417edb, type: 3}
@@ -4407,12 +4402,7 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: c6a8c15dd0080c544af378cda241aaf8, type: 3}
   - {fileID: 919132149155446097, guid: cb570b4954998f5419ffab65c32c2a8b, type: 3}
   Kvalue: 0
-  Slier: {fileID: 0}
-  inputx: {fileID: 0}
-  inputy: {fileID: 0}
-  Kvaluetext: {fileID: 0}
-  XText: {fileID: 0}
-  YText: {fileID: 0}
+  NextStepButton: {fileID: 0}
 --- !u!1001 &844276613
 PrefabInstance:
   m_ObjectHideFlags: 0
