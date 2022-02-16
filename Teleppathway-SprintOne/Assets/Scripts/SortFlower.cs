@@ -81,7 +81,7 @@ public class SortFlower : MonoBehaviour
 
     public void CreateNewPoint()
     {
-        Instantiate(SeedPrefeb, new Vector3(inputx.GetComponent<Slider>().value, 0.3f, inputy.GetComponent<Slider>().value), Quaternion.identity, seedsParent.transform);
+        Instantiate(SeedPrefeb, new Vector3(inputx.GetComponent<Slider>().value, 1f, inputy.GetComponent<Slider>().value), Quaternion.identity, seedsParent.transform);
         
         
 

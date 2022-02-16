@@ -127,6 +127,7 @@ public static class KMeans {
     }
 
     //given means, return clusters
+    /*
     private static int[] CalculateIntialCluster(int[] meansArray, int numData, int clusterCount)
     {
         var clustering = new int[numData];
@@ -146,7 +147,7 @@ public static class KMeans {
         }
         return clustering;
     }
-
+    */
 
     private static double[][] CreateMatrix(int rows, int columns) {
         var matrix = new double[rows][];
