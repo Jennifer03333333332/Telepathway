@@ -14,6 +14,8 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject flowerParent;
     public GameObject[] FlowerPrefeb;
     public GameObject InitialMeanFlowers;
+    public GameObject MeanPrefeb;
+    public GameObject MeanParent;
     private KMeansResults result;
     public int Kvalue;
     public static List<GameObject> flowers = new List<GameObject>();
@@ -27,7 +29,8 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     List<int[]> clusters = new List<int[]>();
 
     List<int>[] individualcluster = new List<int>[9];
-    
+    private List<GameObject> MeansPoints = new List<GameObject>();
+
     //int[][] clusters;
 
     void Start()
@@ -121,12 +124,19 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             {
                 if (hit.transform.gameObject.tag == "Seed")
                 {
+                    Color color = Color.HSVToRGB(1f * chooseintialK / Kvalue, 1f, 1f);
                     hit.transform.gameObject.SetActive(false);
                     GameObject f=Instantiate(FlowerPrefeb[chooseintialK], hit.transform.position, Quaternion.identity, InitialMeanFlowers.transform);
                     f.transform.localScale = new Vector3(5, 5, 5);
                     means[chooseintialK] = new double[] { hit.transform.position.x, hit.transform.position.z };
                     chooseintialK++;
-                    
+                    GameObject m = Instantiate(MeanPrefeb, hit.transform.position, Quaternion.identity, MeanParent.transform);
+                    m.GetComponent<MeshRenderer>().material.color = color;
+                    m.GetComponent<LineRenderer>().startColor = color;
+                    m.GetComponent<LineRenderer>().endColor = color;
+                    m.GetComponent<LineRenderer>().material.color = color;
+                    MeansPoints.Add(m);
+
                 }
 
             }
@@ -195,6 +205,9 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             for (int k = 0; k < Kvalue; k++)
             {
                 TextUI.text = TextUI.text + "Distance to Mean " + (k+1).ToString() +": " + System.Math.Round(distance[k],2) +"\n";
+                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(0, MeansPoints[k].transform.position);
+                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(1, seedsParent.transform.GetChild(j).transform.position);
+                
             }
             double shortestdistance = double.MaxValue;
             int shortestindex = -1;
@@ -238,6 +251,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
                 sumY = sumY + data[individualcluster[i][j]][1];
             }
             means[i] = new double[] {sumX/ individualcluster[i].ToArray().Length,sumY/ individualcluster[i].ToArray().Length };
+            MeanParent.transform.GetChild(i).transform.position = new Vector3((float)means[i][0], MeanParent.transform.GetChild(i).transform.position.y, (float)means[i][1]);
             
 
             if (Math.Round(means[i][0],3) != Math.Round(premean[i][0],3)|| Math.Round(means[i][1],3) != Math.Round(premean[i][1],3))
@@ -257,6 +271,10 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             Debug.Log(premean[0][0] +" "+ premean[0][1]);
             Debug.Log(means[0][0] + " " + means[0][1]);
             Debug.Log("Finish");
+            for(int i = 0; i < Kvalue; i++)
+            {
+                MeansPoints[i].GetComponent<LineRenderer>().enabled = false;
+            }
         }
 
     }
