@@ -13,13 +13,15 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject seedsParent;
     public GameObject flowerParent;
     public GameObject[] FlowerPrefeb;
+    public GameObject InitialMeanFlowers;
     private KMeansResults result;
     public int Kvalue;
     public static List<GameObject> flowers = new List<GameObject>();
+    public Text TextUI;
    
     int chooseintialK = 0;
     public GameObject NextStepButton;
-
+    int round = 0;
     double[][] data;
     public double[][] means;
     List<int[]> clusters = new List<int[]>();
@@ -90,7 +92,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
 
     public void CalculateKeans()
     {
-        StartCoroutine(WaitTimeforEachStep(1));
+        StartCoroutine(WaitTimeforEachStep(0.1f));
 
         //Debug.Log(means[4][0] +"  "+ means[4][1]);
         
@@ -120,7 +122,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
                 if (hit.transform.gameObject.tag == "Seed")
                 {
                     hit.transform.gameObject.SetActive(false);
-                    GameObject f=Instantiate(FlowerPrefeb[chooseintialK], hit.transform.position, Quaternion.identity, flowerParent.transform);
+                    GameObject f=Instantiate(FlowerPrefeb[chooseintialK], hit.transform.position, Quaternion.identity, InitialMeanFlowers.transform);
                     f.transform.localScale = new Vector3(5, 5, 5);
                     means[chooseintialK] = new double[] { hit.transform.position.x, hit.transform.position.z };
                     chooseintialK++;
@@ -166,6 +168,11 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         //means = new double[Kvalue][];
         clusters.Clear();
         int i = 0;
+        flowers.Clear();
+        for(int ii = 0; ii < Kvalue; ii++)
+        {
+            individualcluster[ii].Clear();
+        }
         foreach (Transform child in seedsParent.transform)
         {
             flowers.Add(child.gameObject);
@@ -179,12 +186,15 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             }
         }
         data = Cluster(flowers.ToArray());
+        
         for (int j = 0; j < data.Length; j++)
         {
+            TextUI.text = seedsParent.transform.GetChild(j).name + "\n";
             double[] distance = new double[Kvalue];
+            distance = ReturnDistance(data[j]);
             for (int k = 0; k < Kvalue; k++)
             {
-                distance = ReturnDistance(data[j]);
+                TextUI.text = TextUI.text + "Distance to Mean " + (k+1).ToString() +": " + System.Math.Round(distance[k],2) +"\n";
             }
             double shortestdistance = double.MaxValue;
             int shortestindex = -1;
@@ -196,14 +206,58 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
                     shortestindex = a;
                 }
             }
-            Debug.Log(shortestdistance);
-            Debug.Log(shortestindex);
+            
+            
             individualcluster[shortestindex].Add(j);
             seedsParent.transform.GetChild(j).gameObject.SetActive(false);
+            if (round != 0)
+            {
+                Destroy(flowerParent.transform.GetChild(0).gameObject);
+            }
             GameObject f = Instantiate(FlowerPrefeb[shortestindex], seedsParent.transform.GetChild(j).transform.position, Quaternion.identity, flowerParent.transform);
             f.transform.localScale = new Vector3(5, 5, 5);
             yield return new WaitForSeconds(waittime);
         }
+        InitialMeanFlowers.SetActive(false);
+        CalculateMean();
         
+    }
+
+    void CalculateMean()
+    {
+        bool changed = false;
+        double[][] premean =(double[][]) means.Clone();
+        Debug.Log(premean[0][0] + " " + premean[0][1]);
+        for (int i = 0; i < Kvalue; i++)
+        {
+            double sumX = 0;
+            double sumY = 0;
+            for(int j = 0; j < individualcluster[i].ToArray().Length; j++)
+            {
+                sumX = sumX + data[individualcluster[i][j]][0];
+                sumY = sumY + data[individualcluster[i][j]][1];
+            }
+            means[i] = new double[] {sumX/ individualcluster[i].ToArray().Length,sumY/ individualcluster[i].ToArray().Length };
+            
+
+            if (Math.Round(means[i][0],3) != Math.Round(premean[i][0],3)|| Math.Round(means[i][1],3) != Math.Round(premean[i][1],3))
+            {
+                changed = true;
+            }
+
+        }
+        
+        if (changed)
+        {
+            round++;
+            StartCoroutine(WaitTimeforEachStep(0.1f));
+        }
+        else
+        {
+            Debug.Log(premean[0][0] +" "+ premean[0][1]);
+            Debug.Log(means[0][0] + " " + means[0][1]);
+            Debug.Log("Finish");
+        }
+
     }
 }

@@ -36,7 +36,7 @@ public class PlantSeed : MonoBehaviour, IPointerDownHandler
             {
                 if (hit.transform.gameObject.tag == "Garden")
                 {
-                    Instantiate(SeedPrefeb, new Vector3(hit.point.x, 1, hit.point.z), Quaternion.identity, seedsParent.transform);
+                    Instantiate(SeedPrefeb, new Vector3(hit.point.x, 1f, hit.point.z), Quaternion.identity, seedsParent.transform);
                 }
                 
             }
