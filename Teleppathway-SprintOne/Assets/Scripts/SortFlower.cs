@@ -16,13 +16,19 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject InitialMeanFlowers;
     public GameObject MeanPrefeb;
     public GameObject MeanParent;
-    private KMeansResults result;
+    public GameObject NextStepButton3;
+    public GameObject NextStepButton4;
+    public GameObject FasterButton;
+    private bool pause = false;
+    public GameObject PauseButton;
+    public float StepTime = 1f;
+    private bool faster = false;
     public int Kvalue;
     public static List<GameObject> flowers = new List<GameObject>();
     public Text TextUI;
    
     int chooseintialK = 0;
-    public GameObject NextStepButton;
+    
     int round = 0;
     double[][] data;
     public double[][] means;
@@ -95,7 +101,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
 
     public void CalculateKeans()
     {
-        StartCoroutine(WaitTimeforEachStep(0.1f));
+        StartCoroutine(WaitTimeforEachStep());
 
         //Debug.Log(means[4][0] +"  "+ means[4][1]);
         
@@ -142,7 +148,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             }
             if (chooseintialK == Kvalue && GameManager.Instance.step == 2)
             {
-                NextStepButton.SetActive(true);
+                NextStepButton3.SetActive(true);
             }
         }
         
@@ -173,7 +179,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         return Math.Sqrt(sum);
     }
 
-    IEnumerator WaitTimeforEachStep(float waittime)
+    IEnumerator WaitTimeforEachStep()
     {
         //means = new double[Kvalue][];
         clusters.Clear();
@@ -229,7 +235,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             }
             GameObject f = Instantiate(FlowerPrefeb[shortestindex], seedsParent.transform.GetChild(j).transform.position, Quaternion.identity, flowerParent.transform);
             f.transform.localScale = new Vector3(5, 5, 5);
-            yield return new WaitForSeconds(waittime);
+            yield return new WaitForSeconds(StepTime);
         }
         InitialMeanFlowers.SetActive(false);
         CalculateMean();
@@ -264,7 +270,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         if (changed)
         {
             round++;
-            StartCoroutine(WaitTimeforEachStep(0.1f));
+            StartCoroutine(WaitTimeforEachStep());
         }
         else
         {
@@ -275,7 +281,40 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             {
                 MeansPoints[i].GetComponent<LineRenderer>().enabled = false;
             }
+            NextStepButton4.SetActive(true);
         }
 
+    }
+
+    public void Faster()
+    {
+        if (faster)
+        {
+            faster = false;
+            StepTime = 1f;
+            FasterButton.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            faster = true;
+            StepTime = 0.3f;
+            FasterButton.GetComponent<Image>().color = new Color32(114,126,233,255);
+        }
+    }
+
+    public void Pause()
+    {
+        if (pause)
+        {
+            pause = false;
+            Time.timeScale = 1;
+            PauseButton.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            pause = true;
+            Time.timeScale = 0;
+            PauseButton.GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+        }
     }
 }
