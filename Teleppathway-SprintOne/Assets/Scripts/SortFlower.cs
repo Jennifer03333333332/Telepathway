@@ -21,6 +21,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject NextStepButton4;
     public GameObject FasterButton;
     public GameObject DistanceTextPrefeb;
+    private Color32[] flowercolor;
     private bool pause = false;
     public GameObject PauseButton;
     public float StepTime = 1f;
@@ -47,8 +48,18 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         {
             individualcluster[i] = new List<int>();
         }
-        
-        
+        flowercolor = new Color32[9];
+        flowercolor[0] = new Color32 (154, 125, 233, 255 );
+        flowercolor[1] = new Color32(69, 163, 200, 255);
+        flowercolor[2] = new Color32(204, 204, 204, 255);
+        flowercolor[3] = new Color32(184, 43, 33, 255);
+        flowercolor[4] = new Color32(253, 192, 30, 255);
+        flowercolor[5] = new Color32(200, 100, 77, 255);
+        flowercolor[6] = new Color32(238, 171, 164, 255);
+        flowercolor[7] = new Color32(236, 118, 35, 255);
+        flowercolor[8] = new Color32(57, 76, 193, 255);
+
+
     }
 
     // Update is called once per frame
@@ -132,7 +143,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             {
                 if (hit.transform.gameObject.tag == "Seed")
                 {
-                    Color color = Color.HSVToRGB(1f * chooseintialK / Kvalue, 1f, 1f);
+                    Color color = flowercolor[chooseintialK];
                     hit.transform.gameObject.SetActive(false);
                     GameObject f=Instantiate(FlowerPrefeb[chooseintialK], hit.transform.position, Quaternion.identity, InitialMeanFlowers.transform);
                     f.transform.localScale = new Vector3(5, 5, 5);

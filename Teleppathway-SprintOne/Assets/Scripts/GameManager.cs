@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             }
             if (step == 3)
             {
-                Step3text.text = "Choose "+ K + " sprout. They are the initial mean for each clusters.\n\n(Mean is the center or centroid of each clusters)";
+                Step3text.text = "Choose "+ K + " sprout. They are the initial mean for each clusters.\n\n(Mean is the center or centroid of each clusters, the solid dot is the Mean point.)";
             }
         }
         
