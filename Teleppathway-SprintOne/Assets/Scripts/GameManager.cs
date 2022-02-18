@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject Garden;
     public GameObject KSlider;
     public GameObject SortFlower;
+    public Text Step3text;
     public int step = 0;
     public int K=0;
     private void Awake()
@@ -56,6 +57,10 @@ public class GameManager : MonoBehaviour
             if (step == 1)
             {
                 Garden.GetComponent<PlantSeed>().enabled = true;
+            }
+            if (step == 3)
+            {
+                Step3text.text = "Choose "+ K + " sprout. They are the initial mean for each clusters.\n\n(Mean is the center or centroid of each clusters)";
             }
         }
         
