@@ -38,11 +38,11 @@ public class GameManager : MonoBehaviour
     public void NextStep()
     {
         UISteps[step].SetActive(false);
-        if (step == 0)
+        if (step == 1)
         {
             Garden.GetComponent<PlantSeed>().enabled = false;
         }
-        else if(step == 1)
+        else if(step == 2)
         {
             K = (int)KSlider.GetComponent<Slider>().value;
             SortFlower.GetComponent<SortFlower>().Kvalue = K;
@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
         {
             UISteps[step].SetActive(true);
             Time.timeScale = 1;
+            if (step == 1)
+            {
+                Garden.GetComponent<PlantSeed>().enabled = true;
+            }
         }
         
 

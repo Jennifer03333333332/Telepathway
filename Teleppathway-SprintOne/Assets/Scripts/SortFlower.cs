@@ -121,7 +121,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData data)
     {
         
-        if (chooseintialK<Kvalue&&GameManager.Instance.step==2)
+        if (chooseintialK<Kvalue&&GameManager.Instance.step==3)
         {
             
             Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
@@ -146,9 +146,25 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
                 }
 
             }
-            if (chooseintialK == Kvalue && GameManager.Instance.step == 2)
+            if (chooseintialK == Kvalue && GameManager.Instance.step == 3)
             {
                 NextStepButton3.SetActive(true);
+            }
+        }
+        else if(GameManager.Instance.step != 3)
+        {
+            Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Seed")
+                {
+                    if (!hit.transform.GetChild(3).gameObject.activeSelf)
+                    {
+                        hit.transform.GetChild(3).gameObject.SetActive(true);
+                    }
+                    else hit.transform.GetChild(3).gameObject.SetActive(false);
+                }
             }
         }
         

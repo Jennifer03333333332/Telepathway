@@ -23,6 +23,9 @@ public class PlantSeed : MonoBehaviour, IPointerDownHandler
     }
     public void OnPointerDown(PointerEventData data)
     {
+        var rotationVector = transform.rotation.eulerAngles;
+        rotationVector.y = -90;
+        rotationVector.z = 0;
         clicked++;
         if (clicked == 1) clicktime = Time.time;
 
@@ -36,7 +39,7 @@ public class PlantSeed : MonoBehaviour, IPointerDownHandler
             {
                 if (hit.transform.gameObject.tag == "Garden")
                 {
-                    Instantiate(SeedPrefeb, new Vector3(hit.point.x, 1f, hit.point.z), Quaternion.identity, seedsParent.transform);
+                    Instantiate(SeedPrefeb, new Vector3(hit.point.x, 1f, hit.point.z), Quaternion.Euler(rotationVector), seedsParent.transform);
                 }
                 
             }
