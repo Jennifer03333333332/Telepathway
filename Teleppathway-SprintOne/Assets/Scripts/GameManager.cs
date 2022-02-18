@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         if (step < UISteps.Length)
         {
             UISteps[step].SetActive(true);
-            Time.timeScale = 1;
+            
             if (step == 1)
             {
                 Garden.GetComponent<PlantSeed>().enabled = true;
@@ -62,6 +62,17 @@ public class GameManager : MonoBehaviour
             {
                 Step3text.text = "Choose "+ K + " sprout. They are the initial mean for each clusters.\n\n(Mean is the center or centroid of each clusters, the solid dot is the Mean point.)";
             }
+            if (step == 5)
+            {
+                SortFlower.GetComponent<SortFlower>().showmean = true;
+                SortFlower.GetComponent<SortFlower>().CalculateMean();
+            }
+            if (step == 6)
+            {
+                SortFlower.GetComponent<SortFlower>().firstround = false;
+                SortFlower.GetComponent<SortFlower>().CalculateKeans();
+            }
+            Time.timeScale = 1;
         }
         
 

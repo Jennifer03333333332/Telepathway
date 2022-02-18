@@ -19,16 +19,20 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject MeanParent;
     public GameObject NextStepButton3;
     public GameObject NextStepButton4;
-    public GameObject FasterButton;
+    //public GameObject NextStepButton5;
+    public GameObject NextStepButton6;
+    public GameObject[] FasterButton;
     public GameObject DistanceTextPrefeb;
     private Color32[] flowercolor;
     private bool pause = false;
-    public GameObject PauseButton;
+    public GameObject[] PauseButton;
     public float StepTime = 1f;
     private bool faster = false;
     public int Kvalue;
     public static List<GameObject> flowers = new List<GameObject>();
     public Text TextUI;
+    public bool firstround=true;
+    public bool showmean = false;
    
     int chooseintialK = 0;
     
@@ -271,12 +275,24 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             f.transform.localScale = new Vector3(5, 5, 5);
             yield return new WaitForSeconds(StepTime);
         }
-        InitialMeanFlowers.SetActive(false);
-        CalculateMean();
+        if (firstround)
+        {
+            NextStepButton4.SetActive(true);
+            InitialMeanFlowers.SetActive(false);
+
+        }
+        else
+        {
+            CalculateMean();
+        }
+        
+        
+        
+       
         
     }
 
-    void CalculateMean()
+    public void CalculateMean()
     {
         bool changed = false;
         double[][] premean =(double[][]) means.Clone();
@@ -304,7 +320,11 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         if (changed)
         {
             round++;
-            StartCoroutine(WaitTimeforEachStep());
+            if (!firstround)
+            {
+                StartCoroutine(WaitTimeforEachStep());
+            }
+            
         }
         else
         {
@@ -315,7 +335,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             {
                 MeansPoints[i].GetComponent<LineRenderer>().enabled = false;
             }
-            NextStepButton4.SetActive(true);
+            NextStepButton6.SetActive(true);
         }
 
     }
@@ -326,13 +346,29 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         {
             faster = false;
             StepTime = 1f;
-            FasterButton.GetComponent<Image>().color = Color.white;
+            if (GameManager.Instance.step == 4)
+            {
+                FasterButton[0].GetComponent<Image>().color = Color.white;
+            }
+            else if(GameManager.Instance.step == 6)
+            {
+                FasterButton[1].GetComponent<Image>().color = Color.white;
+            }
         }
         else
         {
             faster = true;
             StepTime = 0.3f;
-            FasterButton.GetComponent<Image>().color = new Color32(114,126,233,255);
+            if (GameManager.Instance.step == 4)
+            {
+                FasterButton[0].GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+            }
+            else if (GameManager.Instance.step == 6)
+            {
+                FasterButton[1].GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+            }
+
+
         }
     }
 
@@ -342,13 +378,28 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
         {
             pause = false;
             Time.timeScale = 1;
-            PauseButton.GetComponent<Image>().color = Color.white;
+            if (GameManager.Instance.step == 4)
+            {
+                PauseButton[0].GetComponent<Image>().color = Color.white;
+            }
+            else if(GameManager.Instance.step == 6)
+            {
+                PauseButton[1].GetComponent<Image>().color = Color.white;
+            }
+            
         }
         else
         {
             pause = true;
             Time.timeScale = 0;
-            PauseButton.GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+            if (GameManager.Instance.step == 4)
+            {
+                PauseButton[0].GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+            }
+            else if (GameManager.Instance.step == 6)
+            {
+                PauseButton[1].GetComponent<Image>().color = new Color32(114, 126, 233, 255);
+            }
         }
     }
 }
