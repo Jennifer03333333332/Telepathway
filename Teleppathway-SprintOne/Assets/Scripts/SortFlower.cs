@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Linq;
+using TMPro;
 
 public class SortFlower : MonoBehaviour, IPointerDownHandler
 {
@@ -19,6 +20,7 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
     public GameObject NextStepButton3;
     public GameObject NextStepButton4;
     public GameObject FasterButton;
+    public GameObject DistanceTextPrefeb;
     private bool pause = false;
     public GameObject PauseButton;
     public float StepTime = 1f;
@@ -227,8 +229,13 @@ public class SortFlower : MonoBehaviour, IPointerDownHandler
             for (int k = 0; k < Kvalue; k++)
             {
                 TextUI.text = TextUI.text + "Distance to Mean " + (k+1).ToString() +": " + System.Math.Round(distance[k],2) +"\n";
-                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(0, MeansPoints[k].transform.position);
-                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(1, seedsParent.transform.GetChild(j).transform.position);
+                Vector3 position1 = MeansPoints[k].transform.position;
+                Vector3 position2 = seedsParent.transform.GetChild(j).transform.position; 
+                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(0, position1);
+                MeansPoints[k].GetComponent<LineRenderer>().SetPosition(1, position2);
+                GameObject d = Instantiate(DistanceTextPrefeb,new Vector3((position1.x+position2.x)/2, 2, (position1.z + position2.z) / 2), Quaternion.Euler(70, 0, 0));
+                d.GetComponent<TextMeshPro>().text = Math.Round(distance[k], 2).ToString();
+                Destroy(d, StepTime);
                 
             }
             double shortestdistance = double.MaxValue;
