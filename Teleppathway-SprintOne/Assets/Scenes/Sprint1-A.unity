@@ -3069,6 +3069,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8909210252378256739, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10.078781
+      objectReference: {fileID: 0}
+    - target: {fileID: -8909210252378256739, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3647721
+      objectReference: {fileID: 0}
+    - target: {fileID: -8909210252378256739, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 20.81918
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3133,9 +3145,33 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Garden
       objectReference: {fileID: 0}
+    - target: {fileID: -1981758098562139158, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 20.976057
+      objectReference: {fileID: 0}
+    - target: {fileID: -1981758098562139158, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1227726
+      objectReference: {fileID: 0}
+    - target: {fileID: -1981758098562139158, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 19.569424
+      objectReference: {fileID: 0}
+    - target: {fileID: -1981758098562139158, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0076
+      objectReference: {fileID: 0}
+    - target: {fileID: -1981758098562139158, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
       propertyPath: m_Name
       value: garden update
+      objectReference: {fileID: 0}
+    - target: {fileID: 5210811392638460895, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5322561908313565161, guid: 1c8f23f090dc8914abe4a79de758da8b, type: 3}
@@ -7692,13 +7728,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1559541318}
-  m_LocalRotation: {x: 0.5043495, y: -0, z: -0, w: 0.86349964}
-  m_LocalPosition: {x: -3, y: 11, z: -7}
+  m_LocalRotation: {x: 0.51158905, y: -0, z: -0, w: 0.8592303}
+  m_LocalPosition: {x: -2.38, y: 9.035, z: -5.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60.576, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 61.539, y: 0, z: 0}
 --- !u!114 &1559541322
 MonoBehaviour:
   m_ObjectHideFlags: 0
