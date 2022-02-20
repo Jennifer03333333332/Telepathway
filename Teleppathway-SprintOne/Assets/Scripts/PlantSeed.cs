@@ -24,7 +24,7 @@ public class PlantSeed : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData data)
     {
         var rotationVector = transform.rotation.eulerAngles;
-        rotationVector.y = -90;
+        rotationVector.y = 180;
         rotationVector.z = 0;
         clicked++;
         if (clicked == 1) clicktime = Time.time;
