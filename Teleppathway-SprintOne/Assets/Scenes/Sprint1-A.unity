@@ -4418,6 +4418,7 @@ MonoBehaviour:
   Garden: {fileID: 419330737}
   KSlider: {fileID: 346738043}
   SortFlower: {fileID: 2466296}
+  Step7Text: {fileID: 1353436089}
   Step3text: {fileID: 1594763713}
   step: 0
   K: 0
@@ -9323,7 +9324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -696.167, y: 148}
+  m_AnchoredPosition: {x: -696.167, y: 61}
   m_SizeDelta: {x: 553.7997, y: 143.4158}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1353436089
@@ -9359,7 +9360,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Voronoi Diagram
+  m_Text: Congratulations!  You successfully sort the sprouts into K clusters!
 --- !u!222 &1353436090
 CanvasRenderer:
   m_ObjectHideFlags: 0

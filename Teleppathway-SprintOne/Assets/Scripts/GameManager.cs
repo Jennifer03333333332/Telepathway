@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject Garden;
     public GameObject KSlider;
     public GameObject SortFlower;
+    public Text Step7Text;
     public Text Step3text;
     public int step = 0;
     public int K=0;
@@ -71,6 +72,10 @@ public class GameManager : MonoBehaviour
             {
                 SortFlower.GetComponent<SortFlower>().firstround = false;
                 SortFlower.GetComponent<SortFlower>().CalculateKeans();
+            }
+            if (step == 7)
+            {
+                Step7Text.text = "Congratulations!  You successfully sort the sprouts into " + K + " clusters!";
             }
             Time.timeScale = 1;
         }
