@@ -195,9 +195,8 @@ MonoBehaviour:
   analyzer: {fileID: 1942172355}
   player: {fileID: 1294148615}
   songs:
-  - {fileID: 8300000, guid: 569e361a629e4714e9bb7e4f5eb848b1, type: 3}
-  - {fileID: 8300000, guid: 4731ec35c8b2bce47a3f6ae1288b6219, type: 3}
   - {fileID: 8300000, guid: fd07c99ecde62b04f8ccee53008d67c1, type: 3}
+  - {fileID: 8300000, guid: 5adf5a496dd87164c8e5eafc504c5198, type: 3}
 --- !u!1 &183114750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,19 +1172,19 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: uncategorized
+      InputGroup: 
     - Name: startRadius
       Value: {x: 0.01, y: 0, z: 0}
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: uncategorized
+      InputGroup: 
     - Name: endRadius
       Value: {x: 0.05, y: 0, z: 0}
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: uncategorized
+      InputGroup: 
     - Name: sensationXInVirtualSpace
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
@@ -1287,7 +1286,7 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: uncategorized
+      InputGroup: 
     supportsTransform_: 1
     TrackingObject: {fileID: 0}
 --- !u!4 &1816577593

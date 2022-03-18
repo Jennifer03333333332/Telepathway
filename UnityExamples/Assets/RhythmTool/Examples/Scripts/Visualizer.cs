@@ -67,7 +67,7 @@ namespace RhythmTool.Examples
                     {
                         if (line.strength >= 5 && !(ss.SensationBlock == "Open" && ss.Running == true))
                         {
-                            StartCoroutine(StrengthSensation(0.6f));
+                            StartCoroutine(StrengthSensation(0.5f));
                         }
                         else if(!(ss.SensationBlock == "Open" && ss.Running == true))
                         {
