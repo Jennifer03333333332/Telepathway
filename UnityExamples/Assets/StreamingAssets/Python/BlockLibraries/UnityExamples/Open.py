@@ -17,7 +17,7 @@ connect(Constant((1, 0, 0)), comparator.returnValueIfALessThanB)
 expandingCircle = sh.createSensationFromPath("Open",
                                              {
                                                  ("t", lerp.x) : (0, 0, 0),
-                                                 ("duration", lerp.y1) : (1, 0, 0),
+                                                 ("duration", lerp.y1) : (0.5, 0, 0),
                                                  ("startRadius", lerp.x0) : (0.01, 0, 0),
                                                  ("endRadius", lerp.x1) : (0.05, 0, 0),
                                                  ("t", comparator.a) : (0, 0, 0),

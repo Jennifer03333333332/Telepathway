@@ -16,8 +16,10 @@ namespace RhythmTool.Examples
 
         public Line linePrefab;
         public SensationSource ss;
-        public float timeRemaining = 10;
+        public float timeRemaining = 0.5f;
         public bool timerIsRunning = false;
+        bool showbeat=true, shownote=true, showstrength=true;
+        public bool showstrengthtimer = true;
 
         private List<Line> lines;
 
@@ -43,7 +45,7 @@ namespace RhythmTool.Examples
         {
             if (!player.isPlaying)
                 return;
-
+            
             UpdateLines();
         }
         
@@ -59,17 +61,19 @@ namespace RhythmTool.Examples
                 {
                     Destroy(line.gameObject);
                     Debug.Log(line.strength);
-                    if (line.tag == 0 && !(ss.SensationBlock == "Open" && ss.Running == true))
+                    if (line.tag == 0 && !(ss.SensationBlock == "Open" && ss.Running == true)&&showbeat)
                     {
                         StartCoroutine(BeatSensation(0.2f));
+                        
                     }
                     else if(line.tag == 1)
                     {
-                        if (line.strength >= 5 && !(ss.SensationBlock == "Open" && ss.Running == true))
+                        if (line.strength >= 5 && !(ss.SensationBlock == "Open" && ss.Running == true)&&showstrength&&showstrengthtimer)
                         {
+                            showstrengthtimer = false;
                             StartCoroutine(StrengthSensation(0.5f));
                         }
-                        else if(!(ss.SensationBlock == "Open" && ss.Running == true))
+                        else if(!(ss.SensationBlock == "Open" && ss.Running == true)&&shownote)
                         {
                             StartCoroutine(NoteSensation(0.2f, line.note));
                         }
@@ -225,11 +229,43 @@ namespace RhythmTool.Examples
         }
         System.Collections.IEnumerator StrengthSensation(float waittime)
         {
-         
-            ss.SensationBlock = "Open";
-            ss.Running = true;
+
+
+            if (ss.SensationBlock != "Open")
+            {
+                ss.SensationBlock = "Open";
+            }
+            else if(ss.SensationBlock=="Open")
+            {
+                ss.enabled = false;
+            }
+            ss.enabled = true;
+            if (!ss.Running)
+            {
+                ss.Running = true;
+            }
+           
+            
             yield return new WaitForSeconds(waittime);
             ss.Running = false;
+            showstrengthtimer = true;
+        }
+        public void BeatStatus()
+        {
+            showbeat = !showbeat;
+        }
+
+        public void NoteStatus()
+        {
+            shownote = !shownote;
+        }
+
+        public void StrengthStatus()
+        {
+            showstrength = !showstrength;
         }
     }
+
+   
+
 }
