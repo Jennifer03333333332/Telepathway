@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bubble
+  - FirstFinger
+  - SecondFinger
+  - ThirdFinger
+  - FourthFinger
+  - FifthFinger
+  - Fire
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX

@@ -15,9 +15,9 @@ namespace RhythmTool.Examples
         public Text textNote;
 
         public Line linePrefab;
+        public Line BeatPrefeb;
+        public Line AccentPrefeb;
         public SensationSource ss;
-        public float timeRemaining = 0.5f;
-        public bool timerIsRunning = false;
         bool showbeat=true, shownote=true, showstrength=true;
         public bool showstrengthtimer = true;
 
@@ -26,6 +26,10 @@ namespace RhythmTool.Examples
         private List<Chroma> chromaFeatures;
 
         private Note lastNote = Note.FSHARP;
+        public Leap.Controller _leap;
+        GameObject lefthand;
+        GameObject righthand;
+        GameObject handcontroller;
 
         void Awake()
         {           
@@ -39,14 +43,32 @@ namespace RhythmTool.Examples
             lines = new List<Line>();
             textNote.text = "()";
             chromaFeatures = new List<Chroma>();
+            handcontroller = GameObject.Find("LeapOutlineHandController");
+            Debug.Log(handcontroller);
+           
+            //lefthand = handcontroller.transform.GetChild(0).gameObject;
+            //righthand = handcontroller.transform.GetChild(1).gameObject;
+
         }
-        
+        private void Start()
+        {
+            
+        }
+
         void Update()
         {
             if (!player.isPlaying)
                 return;
+
+            if (handcontroller == null)
+            {
+                handcontroller = GameObject.Find("LeapOutlineHandController");
+                lefthand = handcontroller.transform.GetChild(0).gameObject;
+                righthand = handcontroller.transform.GetChild(1).gameObject;
+            }
             
             UpdateLines();
+            
         }
         
         private void UpdateLines()
@@ -60,7 +82,7 @@ namespace RhythmTool.Examples
                 if (line.timestamp < time || line.timestamp > time + eventProvider.offset)
                 {
                     Destroy(line.gameObject);
-                    Debug.Log(line.strength);
+                    
                     if (line.tag == 0 && !(ss.SensationBlock == "Open" && ss.Running == true)&&showbeat)
                     {
                         StartCoroutine(BeatSensation(0.2f));
@@ -92,9 +114,124 @@ namespace RhythmTool.Examples
             //so they will move as the song plays.
             foreach (Line line in lines)
             {
-                Vector3 position = line.transform.position;
+                UnityEngine.Vector3 position = line.transform.position;
 
-                position.x = line.timestamp - time;
+               
+                
+                if (line.tag == 0 || (line.tag==1&&line.strength>=5))
+                {
+                    GameObject Hand = GameObject.Find("HandContainer");
+                    if (Hand != null)
+                    {
+                        if (Hand.activeSelf)
+                        {
+                            position.x = Hand.transform.position.x;
+                            position.z = Hand.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + Hand.transform.position.y;
+                        }
+                    }
+                    //position.y = (-(line.timestamp - time))+Hand.transform.position.y;
+
+                }
+                else
+                {
+                    
+                    GameObject FirstFinger;
+                    GameObject SecondFinger;
+                    GameObject ThirdFinger;
+                    GameObject FourthFinger;
+                    GameObject FifthFinger;
+                    Debug.Log(righthand);
+                    Debug.Log(lefthand);
+                    
+                    if (righthand!=null&&righthand.activeSelf)
+                    {
+                        FirstFinger = GameObject.Find("Bip01 R Finger0Nub");
+                        SecondFinger = GameObject.Find("Bip01 R Finger1Nub");
+                        ThirdFinger = GameObject.Find("Bip01 R Finger2Nub");
+                        FourthFinger = GameObject.Find("Bip01 R Finger3Nub");
+                        FifthFinger = GameObject.Find("Bip01 R Finger4Nub");
+                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.B)
+                        {
+                            position.x = FirstFinger.transform.position.x;
+                            position.z = FirstFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FirstFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.C || line.note == Note.CSHARP)
+                        {
+                            position.x = SecondFinger.transform.position.x;
+                            position.z = SecondFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + SecondFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.D || line.note == Note.DSHARP)
+                        {
+                            position.x = ThirdFinger.transform.position.x;
+                            position.z = ThirdFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + ThirdFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.E || line.note == Note.F || line.note == Note.FSHARP)
+                        {
+                            position.x = FourthFinger.transform.position.x;
+                            position.z = FourthFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FourthFinger.transform.position.y;
+
+                        }
+                        else if (line.note == Note.G || line.note == Note.GSHARP)
+                        {
+                            position.x = FifthFinger.transform.position.x;
+                            position.z = FifthFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FifthFinger.transform.position.y;
+                        }
+
+                        
+                    }
+                    else if (lefthand!=null&&lefthand.activeSelf)
+                    {
+                        FirstFinger = GameObject.Find("Bip01 R Finger0Nub001");
+                        SecondFinger = GameObject.Find("Bip01 R Finger1Nub001");
+                        ThirdFinger = GameObject.Find("Bip01 R Finger2Nub001");
+                        FourthFinger = GameObject.Find("Bip01 R Finger3Nub001");
+                        FifthFinger = GameObject.Find("Bip01 R Finger4Nub001");
+                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.B)
+                        {
+                            position.x = FirstFinger.transform.position.x;
+                            position.z = FirstFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FirstFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.C || line.note == Note.CSHARP)
+                        {
+                            position.x = SecondFinger.transform.position.x;
+                            position.z = SecondFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + SecondFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.D || line.note == Note.DSHARP)
+                        {
+                            position.x = ThirdFinger.transform.position.x;
+                            position.z = ThirdFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + ThirdFinger.transform.position.y;
+                        }
+                        else if (line.note == Note.E || line.note == Note.F || line.note == Note.FSHARP)
+                        {
+                            position.x = FourthFinger.transform.position.x;
+                            position.z = FourthFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FourthFinger.transform.position.y;
+
+                        }
+                        else if (line.note == Note.G || line.note == Note.GSHARP)
+                        {
+                            position.x = FifthFinger.transform.position.x;
+                            position.z = FifthFinger.transform.position.z;
+                            position.y = (-(line.timestamp - time)) + FifthFinger.transform.position.y;
+                        }
+
+                        
+                    }
+                    
+                    
+                  
+                    
+                }
+                
 
                 line.transform.position = position;
             }
@@ -154,9 +291,31 @@ namespace RhythmTool.Examples
 
         private void CreateLine(float timestamp, float position, float scale, Color color, float opacity,int tag,Note note,float strength)
         {
-            Line line = Instantiate(linePrefab);
-            line.transform.position = new Vector3(0, position, 0);
-            line.transform.localScale = new Vector3(.1f, scale, .01f);
+            Line line;
+            if (tag == 0)
+            {
+                line = Instantiate(BeatPrefeb);
+                line.transform.position = new Vector3(0, 0, 0);
+                //line.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            }
+            else if(tag==1 &&strength>=5)
+            {
+               
+                line = Instantiate(AccentPrefeb);
+                line.transform.position = new Vector3(0, 0, 0);
+                line.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+
+
+            }
+            else
+            {
+                line = Instantiate(linePrefab);
+                line.transform.position = new Vector3(0, position, 0);
+                line.transform.localScale = new Vector3(1, 1, 1);
+            }
+           
+            
 
             line.Init(color, opacity, timestamp,tag,note,strength);
 

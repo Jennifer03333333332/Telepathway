@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 400002}
   m_Layer: 0
   m_Name: Bip01 R Finger4Nub
-  m_TagString: Untagged
+  m_TagString: FifthFinger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 400008}
   m_Layer: 0
   m_Name: Bip01 R Finger3Nub
-  m_TagString: Untagged
+  m_TagString: FourthFinger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 400014}
   m_Layer: 0
   m_Name: Bip01 R Finger2Nub
-  m_TagString: Untagged
+  m_TagString: ThirdFinger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 400020}
   m_Layer: 0
   m_Name: Bip01 R Finger1Nub
-  m_TagString: Untagged
+  m_TagString: SecondFinger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 400026}
   m_Layer: 0
   m_Name: Bip01 R Finger0Nub
-  m_TagString: Untagged
+  m_TagString: FirstFinger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,6 +837,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -925,7 +926,7 @@ GameObject:
   - component: {fileID: 11402250}
   m_Layer: 0
   m_Name: PepperBaseCutRightThinOutlineHand
-  m_TagString: Untagged
+  m_TagString: RightHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

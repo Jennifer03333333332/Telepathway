@@ -21,5 +21,10 @@ namespace RhythmTool.Examples
             meshRenderer.material.SetColor("_Color", color);
             
         }
+
+        private void Update()
+        {
+            
+        }
     }
 }
