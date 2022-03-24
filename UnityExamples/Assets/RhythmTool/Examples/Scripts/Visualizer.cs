@@ -17,6 +17,10 @@ namespace RhythmTool.Examples
         public Line linePrefab;
         public Line BeatPrefeb;
         public Line AccentPrefeb;
+        public GameObject BlockParent;
+        public GameObject BeatsParent;
+        public GameObject NotesParent;
+        public GameObject AccentParent;
         public SensationSource ss;
         bool showbeat=true, shownote=true, showstrength=true;
         public bool showstrengthtimer = true;
@@ -295,6 +299,7 @@ namespace RhythmTool.Examples
             if (tag == 0)
             {
                 line = Instantiate(BeatPrefeb);
+                line.transform.SetParent(BeatsParent.transform);
                 line.transform.position = new Vector3(0, 0, 0);
                 //line.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             }
@@ -302,6 +307,7 @@ namespace RhythmTool.Examples
             {
                
                 line = Instantiate(AccentPrefeb);
+                line.transform.SetParent(AccentParent.transform);
                 line.transform.position = new Vector3(0, 0, 0);
                 line.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
@@ -311,6 +317,7 @@ namespace RhythmTool.Examples
             else
             {
                 line = Instantiate(linePrefab);
+                line.transform.SetParent(NotesParent.transform);
                 line.transform.position = new Vector3(0, position, 0);
                 line.transform.localScale = new Vector3(1, 1, 1);
             }
@@ -412,16 +419,51 @@ namespace RhythmTool.Examples
         public void BeatStatus()
         {
             showbeat = !showbeat;
+            if (showbeat)
+            {
+                BeatsParent.SetActive(true);
+            }
+            else
+            {
+                BeatsParent.SetActive(false);
+            }
         }
 
         public void NoteStatus()
         {
             shownote = !shownote;
+            if (shownote)
+            {
+                NotesParent.SetActive(true);
+            }
+            else
+            {
+                NotesParent.SetActive(false);
+            }
         }
 
         public void StrengthStatus()
         {
             showstrength = !showstrength;
+            if (showstrength)
+            {
+                AccentParent.SetActive(true);
+            }
+            else
+            {
+                AccentParent.SetActive(false);
+            }
+        }
+        public void HideBlock()
+        {
+            if (BlockParent.activeSelf)
+            {
+                BlockParent.SetActive(false);
+            }
+            else
+            {
+                BlockParent.SetActive(true);
+            }
         }
     }
 
