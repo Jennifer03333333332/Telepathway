@@ -21,6 +21,8 @@ namespace RhythmTool.Examples
         public GameObject BeatsParent;
         public GameObject NotesParent;
         public GameObject AccentParent;
+        public GameObject[] Buttons;
+
         public SensationSource ss;
         bool showbeat=true, shownote=true, showstrength=true;
         public bool showstrengthtimer = true;
@@ -422,10 +424,14 @@ namespace RhythmTool.Examples
             if (showbeat)
             {
                 BeatsParent.SetActive(true);
+                Buttons[0].SetActive(true);
+                Buttons[1].SetActive(false);
             }
             else
             {
                 BeatsParent.SetActive(false);
+                Buttons[0].SetActive(false);
+                Buttons[1].SetActive(true);
             }
         }
 
@@ -435,10 +441,14 @@ namespace RhythmTool.Examples
             if (shownote)
             {
                 NotesParent.SetActive(true);
+                Buttons[2].SetActive(true);
+                Buttons[3].SetActive(false);
             }
             else
             {
                 NotesParent.SetActive(false);
+                Buttons[2].SetActive(false);
+                Buttons[3].SetActive(true);
             }
         }
 
@@ -448,10 +458,14 @@ namespace RhythmTool.Examples
             if (showstrength)
             {
                 AccentParent.SetActive(true);
+                Buttons[4].SetActive(true);
+                Buttons[5].SetActive(false);
             }
             else
             {
                 AccentParent.SetActive(false);
+                Buttons[4].SetActive(false);
+                Buttons[5].SetActive(true);
             }
         }
         public void HideBlock()

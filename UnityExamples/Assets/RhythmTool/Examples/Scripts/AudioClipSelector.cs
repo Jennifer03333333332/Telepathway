@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RhythmTool.Examples
 {
@@ -11,6 +12,7 @@ namespace RhythmTool.Examples
     {
         public RhythmAnalyzer analyzer;
         public RhythmPlayer player;
+        public Text songname;
               
         public virtual void NextSong()
         {
@@ -49,6 +51,7 @@ namespace RhythmTool.Examples
 
             AudioClip audioClip = songs[currentSong];
             RhythmData rhythmData = analyzer.Analyze(audioClip, 6);
+            songname.text = songs[currentSong].name;
 
             //Give the RhythmData to the RhythmPlayer.
             player.rhythmData = rhythmData;
