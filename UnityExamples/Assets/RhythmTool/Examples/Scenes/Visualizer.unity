@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6528c6c93dba348eba3ed568d3e638c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensationBlock_: CircleSensation
+  sensationBlock_: None
   lastSetBlockToUCA_: CircleSensation
   running_: 0
   priority_: 0
@@ -1851,7 +1851,7 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: sensationXInVirtualSpace
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
@@ -1959,13 +1959,13 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: intensity
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     supportsTransform_: 1
     TrackingObject: {fileID: 505075903}
 --- !u!1001 &505274517
@@ -2266,7 +2266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6528c6c93dba348eba3ed568d3e638c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensationBlock_: CircleSensation
+  sensationBlock_: None
   lastSetBlockToUCA_: CircleSensation
   running_: 0
   priority_: 0
@@ -2277,7 +2277,7 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: sensationXInVirtualSpace
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
@@ -2385,13 +2385,13 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: intensity
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     supportsTransform_: 1
     TrackingObject: {fileID: 581384675}
 --- !u!1 &611068151
@@ -4700,7 +4700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 482}
+  m_AnchoredPosition: {x: 3, y: 426}
   m_SizeDelta: {x: 1088.8, y: 87.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221667606
@@ -7563,6 +7563,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 16.002474
       objectReference: {fileID: 0}
+    - target: {fileID: 4452894992754738172, guid: af823c31fd4cf42409edaca9d6e97b5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af823c31fd4cf42409edaca9d6e97b5c, type: 3}
 --- !u!1 &1923498855
@@ -7608,7 +7613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6528c6c93dba348eba3ed568d3e638c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensationBlock_: CircleSensation
+  sensationBlock_: None
   lastSetBlockToUCA_: CircleSensation
   running_: 0
   priority_: 0
@@ -7619,7 +7624,7 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: sensationXInVirtualSpace
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
@@ -7727,13 +7732,13 @@ MonoBehaviour:
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     - Name: intensity
       Value: {x: 1, y: 0, z: 0}
       Object: {fileID: 0}
       IsVisible: 1
       Type: Scalar
-      InputGroup: 
+      InputGroup: uncategorized
     supportsTransform_: 1
     TrackingObject: {fileID: 1923498856}
 --- !u!1 &1940401539
