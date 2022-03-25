@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UltrahapticsCoreAsset;
 using System;
+using UnityEngine.SceneManagement;
 namespace RhythmTool.Examples
 {
     public class Visualizer : MonoBehaviour
@@ -23,9 +24,9 @@ namespace RhythmTool.Examples
         public GameObject AccentParent;
         public GameObject[] Buttons;
         public GameObject Background;
-
+        public GameObject warningmessage;
         public SensationSource ss;
-        bool showbeat=true, shownote=true, showstrength=true;
+        public bool showbeat=true, shownote=true, showstrength=true;
         public bool showstrengthtimer = true;
 
         private List<Line> lines;
@@ -59,7 +60,18 @@ namespace RhythmTool.Examples
         }
         private void Start()
         {
-            
+            if (!showbeat)
+            {
+                BeatsParent.SetActive(false);
+            }
+            if (!shownote)
+            {
+                NotesParent.SetActive(false);
+            }
+            if (!showstrength)
+            {
+                AccentParent.SetActive(false);
+            }
         }
 
         void Update()
@@ -102,7 +114,7 @@ namespace RhythmTool.Examples
                             showstrengthtimer = false;
                             StartCoroutine(StrengthSensation(0.5f));
                         }
-                        else if(!(ss.SensationBlock == "Open" && ss.Running == true)&&shownote)
+                        else if(line.strength < 5&&!(ss.SensationBlock == "Open" && ss.Running == true)&&shownote)
                         {
                             StartCoroutine(NoteSensation(0.2f, line.note));
                         }
@@ -137,6 +149,10 @@ namespace RhythmTool.Examples
                             position.y = (-(line.timestamp - time)) + Hand.transform.position.y;
                         }
                     }
+                    if (!lefthand.activeSelf && !righthand.activeSelf)
+                    {
+                        warningmessage.SetActive(true);
+                    }
                     //position.y = (-(line.timestamp - time))+Hand.transform.position.y;
 
                 }
@@ -148,35 +164,35 @@ namespace RhythmTool.Examples
                     GameObject ThirdFinger;
                     GameObject FourthFinger;
                     GameObject FifthFinger;
-                    Debug.Log(righthand);
-                    Debug.Log(lefthand);
+                    
                     
                     if (righthand!=null&&righthand.activeSelf)
                     {
+                        warningmessage.SetActive(false);
                         FirstFinger = GameObject.Find("Bip01 R Finger0Nub");
                         SecondFinger = GameObject.Find("Bip01 R Finger1Nub");
                         ThirdFinger = GameObject.Find("Bip01 R Finger2Nub");
                         FourthFinger = GameObject.Find("Bip01 R Finger3Nub");
                         FifthFinger = GameObject.Find("Bip01 R Finger4Nub");
-                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.B)
+                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.C || line.note == Note.CSHARP)
                         {
                             position.x = FirstFinger.transform.position.x;
                             position.z = FirstFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + FirstFinger.transform.position.y;
                         }
-                        else if (line.note == Note.C || line.note == Note.CSHARP)
+                        else if (line.note == Note.D|| line.note == Note.DSHARP || line.note==Note.B)
                         {
                             position.x = SecondFinger.transform.position.x;
                             position.z = SecondFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + SecondFinger.transform.position.y;
                         }
-                        else if (line.note == Note.D || line.note == Note.DSHARP)
+                        else if (line.note == Note.E)
                         {
                             position.x = ThirdFinger.transform.position.x;
                             position.z = ThirdFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + ThirdFinger.transform.position.y;
                         }
-                        else if (line.note == Note.E || line.note == Note.F || line.note == Note.FSHARP)
+                        else if (line.note == Note.F || line.note == Note.FSHARP)
                         {
                             position.x = FourthFinger.transform.position.x;
                             position.z = FourthFinger.transform.position.z;
@@ -194,30 +210,31 @@ namespace RhythmTool.Examples
                     }
                     else if (lefthand!=null&&lefthand.activeSelf)
                     {
+                        warningmessage.SetActive(false);
                         FirstFinger = GameObject.Find("Bip01 R Finger0Nub001");
                         SecondFinger = GameObject.Find("Bip01 R Finger1Nub001");
                         ThirdFinger = GameObject.Find("Bip01 R Finger2Nub001");
                         FourthFinger = GameObject.Find("Bip01 R Finger3Nub001");
                         FifthFinger = GameObject.Find("Bip01 R Finger4Nub001");
-                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.B)
+                        if (line.note == Note.A || line.note == Note.ASharp || line.note == Note.C || line.note == Note.CSHARP)
                         {
                             position.x = FirstFinger.transform.position.x;
                             position.z = FirstFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + FirstFinger.transform.position.y;
                         }
-                        else if (line.note == Note.C || line.note == Note.CSHARP)
+                        else if (line.note == Note.D || line.note == Note.DSHARP || line.note == Note.B)
                         {
                             position.x = SecondFinger.transform.position.x;
                             position.z = SecondFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + SecondFinger.transform.position.y;
                         }
-                        else if (line.note == Note.D || line.note == Note.DSHARP)
+                        else if (line.note == Note.E)
                         {
                             position.x = ThirdFinger.transform.position.x;
                             position.z = ThirdFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + ThirdFinger.transform.position.y;
                         }
-                        else if (line.note == Note.E || line.note == Note.F || line.note == Note.FSHARP)
+                        else if (line.note == Note.F || line.note == Note.FSHARP)
                         {
                             position.x = FourthFinger.transform.position.x;
                             position.z = FourthFinger.transform.position.z;
@@ -229,6 +246,11 @@ namespace RhythmTool.Examples
                             position.x = FifthFinger.transform.position.x;
                             position.z = FifthFinger.transform.position.z;
                             position.y = (-(line.timestamp - time)) + FifthFinger.transform.position.y;
+                        }
+
+                        else if(!lefthand.activeSelf && !righthand.activeSelf)
+                        {
+                            warningmessage.SetActive(true);
                         }
 
                         
@@ -266,7 +288,7 @@ namespace RhythmTool.Examples
 
             //Update BPM text.
             float bpm = Mathf.Round(beat.bpm * 10) / 10;
-            textBPM.text = "(" + bpm + " BPM)";
+            //textBPM.text = "(" + bpm + " BPM)";
         }
 
         private void OnOnset(Onset onset)
@@ -299,18 +321,44 @@ namespace RhythmTool.Examples
         private void CreateLine(float timestamp, float position, float scale, Color color, float opacity,int tag,Note note,float strength)
         {
             Line line;
+            
             if (tag == 0)
             {
                 line = Instantiate(BeatPrefeb);
+                if (BeatsParent.gameObject == null)
+                {
+                    return;
+                }
                 line.transform.SetParent(BeatsParent.transform);
+                if (line.gameObject == null)
+                {
+                    return;
+                }
                 line.transform.position = new Vector3(0, 0, 0);
+                if (line.gameObject == null)
+                {
+                    return;
+                }
                 //line.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             }
             else if(tag==1 &&strength>=5)
             {
                
                 line = Instantiate(AccentPrefeb);
+                if (line.gameObject == null)
+                {
+                    return;
+                }
+                if (AccentParent.gameObject == null)
+                {
+                    return;
+                }
                 line.transform.SetParent(AccentParent.transform);
+                
+                if (AccentParent.gameObject == null)
+                {
+                    return;
+                }
                 line.transform.position = new Vector3(0, 0, 0);
                 line.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
@@ -320,7 +368,16 @@ namespace RhythmTool.Examples
             else
             {
                 line = Instantiate(linePrefab);
+                if (line.gameObject == null)
+                {
+                    return;
+                }
+                if (NotesParent == null)
+                {
+                    return;
+                }
                 line.transform.SetParent(NotesParent.transform);
+                
                 line.transform.position = new Vector3(0, position, 0);
                 line.transform.localScale = new Vector3(1, 1, 1);
             }
@@ -363,19 +420,19 @@ namespace RhythmTool.Examples
             {
                 
 
-                if (note == Note.A || note == Note.ASharp || note == Note.B)
+                if (note == Note.A || note == Note.ASharp || note == Note.C || note==Note.CSHARP)
                 {
                     ss.SensationBlock = "Finger1";
                 }
-                else if (note == Note.C || note == Note.CSHARP)
+                else if (note == Note.D || note == Note.DSHARP|| note == Note.B)
                 {
                     ss.SensationBlock = "Finger2";
                 }
-                else if (note == Note.D || note == Note.DSHARP)
+                else if (note == Note.E)
                 {
                     ss.SensationBlock = "finger3";
                 }
-                else if (note == Note.E || note == Note.F || note == Note.FSHARP)
+                else if ( note == Note.F || note == Note.FSHARP)
                 {
                     ss.SensationBlock = "finger4";
 
@@ -491,6 +548,27 @@ namespace RhythmTool.Examples
             {
                 Background.SetActive(true);
             }
+        }
+
+        public void ChangetoScene1()
+        {
+            ss.enabled = false;
+            SceneManager.LoadScene(1);
+        }
+        public void ChangetoScene2()
+        {
+            ss.enabled = false;
+            SceneManager.LoadScene(2);
+        }
+        public void ChangetoScene3()
+        {
+            ss.enabled = false;
+            SceneManager.LoadScene(3);
+        }
+        public void ChangetoScene4()
+        {
+            ss.enabled = false;
+            SceneManager.LoadScene(4);
         }
     }
 
