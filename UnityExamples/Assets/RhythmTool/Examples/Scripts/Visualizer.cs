@@ -22,6 +22,7 @@ namespace RhythmTool.Examples
         public GameObject NotesParent;
         public GameObject AccentParent;
         public GameObject[] Buttons;
+        public GameObject Background;
 
         public SensationSource ss;
         bool showbeat=true, shownote=true, showstrength=true;
@@ -477,6 +478,18 @@ namespace RhythmTool.Examples
             else
             {
                 BlockParent.SetActive(true);
+            }
+        }
+
+        public void ChengeTheme()
+        {
+            if (Background.activeSelf)
+            {
+                Background.SetActive(false);
+            }
+            else
+            {
+                Background.SetActive(true);
             }
         }
     }
