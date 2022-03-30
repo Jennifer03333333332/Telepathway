@@ -484,6 +484,9 @@ MonoBehaviour:
   Background: {fileID: 1715717235}
   warningmessage: {fileID: 636052481}
   ss: {fileID: 1816577592}
+  showbeat: 1
+  shownote: 1
+  showstrength: 1
   showstrengthtimer: 1
 --- !u!114 &182664359
 MonoBehaviour:
@@ -505,6 +508,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8940a0415f10f2845904165f30243edc, type: 3}
   - {fileID: 8300000, guid: 333334179993cb34db4768f17e8ac616, type: 3}
   - {fileID: 8300000, guid: 519a2a0f21e9aa7488fd5dbcc3d56462, type: 3}
+  songsforlisten: []
+  wrongscene: 0
+  audioSource: {fileID: 0}
 --- !u!1 &183114750
 GameObject:
   m_ObjectHideFlags: 0
@@ -8973,18 +8979,7 @@ MonoBehaviour:
   SphereRadius: 0.005
   SphereColor: {r: 0.39215687, g: 0.654902, b: 0.043137256, a: 1}
   HistorySize: 50
-  registeredSources_:
-  - {fileID: 493152585}
-  - {fileID: 1137796815}
-  - {fileID: 1218213564}
-  - {fileID: 1473143880}
-  - {fileID: 1531792897}
-  - {fileID: 453010565}
-  - {fileID: 505075904}
-  - {fileID: 521062382}
-  - {fileID: 581384676}
-  - {fileID: 1816577592}
-  - {fileID: 1923498857}
+  registeredSources_: []
 --- !u!114 &1940401542
 MonoBehaviour:
   m_ObjectHideFlags: 0

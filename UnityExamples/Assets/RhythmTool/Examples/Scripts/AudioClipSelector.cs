@@ -27,7 +27,10 @@ namespace RhythmTool.Examples
     public class AudioClipSelector : SongSelector
     {
         public List<AudioClip> songs;
-
+        public List<AudioClip> songsforlisten;
+        public bool wrongscene = true;
+        public AudioSource audioSource;
+        public AudioSource originalaudiosource;
         private int currentSong = -1;
 
         void Start()
@@ -51,10 +54,34 @@ namespace RhythmTool.Examples
 
             AudioClip audioClip = songs[currentSong];
             RhythmData rhythmData = analyzer.Analyze(audioClip, 6);
-            songname.text = songs[currentSong].name;
+            
+            if (wrongscene)
+            {
+                songname.text = songsforlisten[currentSong].name;
+                AudioClip audio = songsforlisten[currentSong];
+                if (currentSong == 0)
+                {
+                    audioSource.Stop();
+                    originalaudiosource.volume=0.2f;
+                    audioSource.volume = 0f;
 
-            //Give the RhythmData to the RhythmPlayer.
+                }
+                else
+                {
+                    originalaudiosource.volume = 0;
+                    audioSource.volume = 0.2f;
+                    audioSource.clip = audio;
+                    audioSource.Play();
+                }
+               
+            }
+            else
+            {
+                songname.text = songs[currentSong].name;
+            }
             player.rhythmData = rhythmData;
+            //Give the RhythmData to the RhythmPlayer.
+
         }
     }
 }
