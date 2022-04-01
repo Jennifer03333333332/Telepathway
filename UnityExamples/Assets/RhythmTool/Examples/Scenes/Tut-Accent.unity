@@ -505,6 +505,10 @@ MonoBehaviour:
   songname: {fileID: 1221667606}
   songs:
   - {fileID: 8300000, guid: fd07c99ecde62b04f8ccee53008d67c1, type: 3}
+  songsforlisten: []
+  wrongscene: 0
+  audioSource: {fileID: 0}
+  originalaudiosource: {fileID: 0}
 --- !u!1 &183114750
 GameObject:
   m_ObjectHideFlags: 0

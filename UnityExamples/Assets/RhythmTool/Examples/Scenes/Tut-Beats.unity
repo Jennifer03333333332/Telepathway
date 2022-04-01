@@ -582,6 +582,10 @@ MonoBehaviour:
   songname: {fileID: 1221667606}
   songs:
   - {fileID: 8300000, guid: 7400d67d7eea50a4c8320fb86304e9a3, type: 3}
+  songsforlisten: []
+  wrongscene: 0
+  audioSource: {fileID: 0}
+  originalaudiosource: {fileID: 0}
 --- !u!1 &183114750
 GameObject:
   m_ObjectHideFlags: 0
@@ -8806,6 +8810,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Beat_button_Pressed
       objectReference: {fileID: 0}
+    - target: {fileID: 4452894992532725978, guid: af823c31fd4cf42409edaca9d6e97b5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4452894992532725977, guid: af823c31fd4cf42409edaca9d6e97b5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9154,11 +9163,11 @@ MonoBehaviour:
   SphereColor: {r: 0.39215687, g: 0.654902, b: 0.043137256, a: 1}
   HistorySize: 50
   registeredSources_:
-  - {fileID: 493152585}
   - {fileID: 1473143880}
+  - {fileID: 493152585}
   - {fileID: 521062382}
-  - {fileID: 581384676}
   - {fileID: 1816577592}
+  - {fileID: 581384676}
 --- !u!114 &1940401542
 MonoBehaviour:
   m_ObjectHideFlags: 0

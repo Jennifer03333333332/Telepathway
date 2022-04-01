@@ -504,7 +504,11 @@ MonoBehaviour:
   player: {fileID: 1294148615}
   songname: {fileID: 1221667606}
   songs:
-  - {fileID: 8300000, guid: 84ae2d89e9cf1b945af83b872379b177, type: 3}
+  - {fileID: 8300000, guid: 91811850d3f0b204597c011b2b252b47, type: 3}
+  songsforlisten: []
+  wrongscene: 0
+  audioSource: {fileID: 0}
+  originalaudiosource: {fileID: 0}
 --- !u!1 &183114750
 GameObject:
   m_ObjectHideFlags: 0
