@@ -28,13 +28,13 @@ public class GridEnvironment : Environment
     public void BeginNewGame()
     {
         int gridSizeSet = (GameObject.Find("Dropdown").GetComponent<Dropdown>().value + 1) * 5;
-        numGoals = 1;
-        numObstacles = Mathf.FloorToInt((gridSizeSet * gridSizeSet) / 10f);
+        //numGoals = 1;
+        //numObstacles = Mathf.FloorToInt((gridSizeSet * gridSizeSet) / 10f);
         gridSize = gridSizeSet;
 
         foreach (GameObject actor in actorObjs)
         {
-            DestroyImmediate(actor);
+            //DestroyImmediate(actor);
         }
 
         SetUp();
@@ -61,8 +61,9 @@ public class GridEnvironment : Environment
             num_agents = 1
         };
 
-        List<string> playersList = new List<string>();
-        actorObjs = new List<GameObject>();
+        //List<string> playersList = new List<string>();
+        //actorObjs = new List<GameObject>();
+        /*
         for (int i = 0; i < numObstacles; i++)
         {
             playersList.Add("pit");
@@ -73,7 +74,8 @@ public class GridEnvironment : Environment
         {
             playersList.Add("goal");
         }
-        players = playersList.ToArray();
+        */
+        //players = playersList.ToArray();
         Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         cam.transform.position = new Vector3((gridSize - 1), gridSize, -(gridSize - 1) / 2f);
         cam.orthographicSize = (gridSize + 5f) / 2f;
@@ -110,6 +112,7 @@ public class GridEnvironment : Environment
     /// </summary>
     public void SetEnvironment()
     {
+        /*
         GameObject.Find("Plane").transform.localScale = new Vector3(gridSize / 10.0f, 1f, gridSize / 10.0f);
         GameObject.Find("Plane").transform.position = new Vector3((gridSize - 1) / 2f, -0.5f, (gridSize - 1) / 2f);
         GameObject.Find("sN").transform.localScale = new Vector3(1, 1, gridSize + 2);
@@ -120,13 +123,14 @@ public class GridEnvironment : Environment
         GameObject.Find("sW").transform.localScale = new Vector3(1, 1, gridSize + 2);
         GameObject.Find("sE").transform.position = new Vector3(gridSize, 0.0f, (gridSize - 1) / 2f);
         GameObject.Find("sW").transform.position = new Vector3(-1, 0.0f, (gridSize - 1) / 2f);
-
+        
         HashSet<int> numbers = new HashSet<int>();
         while (numbers.Count < players.Length)
         {
             numbers.Add(Random.Range(0, gridSize * gridSize));
         }
         objectPositions = numbers.ToArray();
+        */
     }
 
     /// <summary>
@@ -162,24 +166,26 @@ public class GridEnvironment : Environment
     public override void Reset()
     {
         base.Reset();
-
+        Debug.Log("1");
         foreach (GameObject actor in actorObjs)
         {
-            DestroyImmediate(actor);
+            //DestroyImmediate(actor);
         }
-        actorObjs = new List<GameObject>();
+        //actorObjs = new List<GameObject>();
 
         for (int i = 0; i < players.Length; i++)
         {
-            int x = (objectPositions[i]) / gridSize;
-            int y = (objectPositions[i]) % gridSize;
-            GameObject actorObj = (GameObject)GameObject.Instantiate(Resources.Load(players[i]));
-            actorObj.transform.position = new Vector3(x, 0.0f, y);
-            actorObj.name = players[i];
-            actorObjs.Add(actorObj);
+            //int x = (objectPositions[i]) / gridSize;
+            //int y = (objectPositions[i]) % gridSize;
+            //GameObject actorObj = (GameObject)GameObject.Instantiate(Resources.Load(players[i]));
+            //actorObj.transform.position = new Vector3(x, 0.0f, y);
+            //actorObj.name = players[i];
+            //actorObjs.Add(actorObj);
             if (players[i] == "agent")
             {
-                visualAgent = actorObj;
+                //visualAgent = actorObj;
+                actorObjs[i].transform.position = new Vector3(0, 0, 0);
+                visualAgent = actorObjs[i];
             }
         }
         episodeReward = 0;
