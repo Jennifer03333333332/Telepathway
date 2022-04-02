@@ -117,7 +117,8 @@ public partial class MapGeneratorPreview : MonoBehaviour
         var startTime = DateTime.Now;
         var points = GetPoints();
         Debug.Log("how many points:"+points.Count);
-        if (FlowersFolder.activeSelf) FlowersFolder.SendMessage("createFlowersBy2DPoints", points);
+        //jennifer show the point
+        //if (FlowersFolder.activeSelf) FlowersFolder.SendMessage("createFlowersBy2DPoints", points);
 
         var time = DateTime.Now;
         var voronoi = new Delaunay.Voronoi(points, null, new Rect(0, 0, meshSize, meshSize), relaxationIterations);

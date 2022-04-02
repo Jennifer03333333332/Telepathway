@@ -22,9 +22,9 @@ public class InstantiateFlowers : MonoBehaviour
             int fakeRandom = Random.Range(1, 9);
             GameObject Flower = Flowers[fakeRandom - 1].FlowerPrefab;
             //Rotation
-            int fakeRandom_Rot = Random.Range(1, 100);
+            int fakeRandom_Rot = 0;//Random.Range(1, 100);
             //Size
-            int fakeRandom_Size = Random.Range(25, 45);
+            int fakeRandom_Size = 1;//Random.Range(25, 45);
 
 
             GameObject FlowerObj = Instantiate(Flower, node, Quaternion.Euler(0, fakeRandom_Rot, 0),transform);

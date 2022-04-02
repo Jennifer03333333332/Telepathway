@@ -173,3 +173,6 @@ coverage.xml
 /htmlcov/
 
 **/UserSettings/*
+
+/Pointilism/
+/VoronoiMapGen-master/
