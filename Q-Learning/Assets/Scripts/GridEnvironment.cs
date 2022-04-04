@@ -14,12 +14,13 @@ public class GridEnvironment : Environment
     int gridSize;
     int[] objectPositions;
     float episodeReward;
+    Vector3 agentPos;
 
     void Start()
     {
         maxSteps = 100;
         waitTime = 0.001f;
-        BeginNewGame();
+        //BeginNewGame();
     }
 
     /// <summary>
@@ -31,7 +32,8 @@ public class GridEnvironment : Environment
         //numGoals = 1;
         //numObstacles = Mathf.FloorToInt((gridSizeSet * gridSizeSet) / 10f);
         gridSize = gridSizeSet;
-
+        actorObjs[0] = GameObject.Find("agent(Clone)");
+        agentPos = GameObject.Find("agent(Clone)").transform.position;
         foreach (GameObject actor in actorObjs)
         {
             //DestroyImmediate(actor);
@@ -166,7 +168,6 @@ public class GridEnvironment : Environment
     public override void Reset()
     {
         base.Reset();
-        Debug.Log("1");
         foreach (GameObject actor in actorObjs)
         {
             //DestroyImmediate(actor);
@@ -184,7 +185,7 @@ public class GridEnvironment : Environment
             if (players[i] == "agent")
             {
                 //visualAgent = actorObj;
-                actorObjs[i].transform.position = new Vector3(0, 0, 0);
+                actorObjs[i].transform.position = agentPos;
                 visualAgent = actorObjs[i];
             }
         }
