@@ -36,6 +36,8 @@ public abstract class Environment : MonoBehaviour {
 
 	public EnvironmentParameters envParameters;
 
+	public MovingPunishment mp;
+
 	public virtual void SetUp () {
 		envParameters = new EnvironmentParameters()
 		{
@@ -75,6 +77,7 @@ public abstract class Environment : MonoBehaviour {
 
 		int sendAction = Mathf.FloorToInt(actions [0]);
 		MiddleStep (sendAction);
+		mp.MoveStep();
 
 		StartCoroutine (WaitStep ());
 	}

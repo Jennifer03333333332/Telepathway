@@ -188,6 +188,11 @@ public class GridEnvironment : Environment
                 actorObjs[i].transform.position = agentPos;
                 visualAgent = actorObjs[i];
             }
+            if (players[i] == "mp")
+            {
+                actorObjs[i].transform.position = new Vector3(0,0,4);
+                
+            }
         }
         episodeReward = 0;
         EndReset();
