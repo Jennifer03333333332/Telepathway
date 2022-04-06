@@ -14,6 +14,8 @@ public class CreateGoal : MonoBehaviour
     public GameObject AIPrefeb;
     public GameObject GoalImagePrefeb;
     public GameObject GoalPrefeb;
+    public GameObject FoodImagePrefeb;
+    public GameObject FoodPrefeb;
     public GameObject canvas;
     GameObject MovingObject;
     int current = -1;
@@ -39,7 +41,7 @@ public class CreateGoal : MonoBehaviour
             gr.Raycast(pointerEventData, results);
             if (results.Count != 0)
             {
-                if (results[0].gameObject.name == "Image (2)"|| results[0].gameObject.name == "Image (1)"|| results[0].gameObject.name == "Image")
+                if (results[0].gameObject.name == "Image (2)"|| results[0].gameObject.name == "Image (1)"|| results[0].gameObject.name == "Image" || results[0].gameObject.name == "Image (3)")
                 {
                     isMouseDown = true;
                     if(results[0].gameObject.name == "Image (2)")
@@ -52,10 +54,15 @@ public class CreateGoal : MonoBehaviour
                         MovingObject = Instantiate(GoalImagePrefeb, canvas.transform);
                         current = 1;
                     }
-                    else
+                    else if (results[0].gameObject.name == "Image")
                     {
                         MovingObject = Instantiate(AIImagePrefeb, canvas.transform);
                         current = 0;
+                    }
+                    else
+                    {
+                        MovingObject = Instantiate(FoodImagePrefeb, canvas.transform);
+                        current = 3;
                     }
 
 
@@ -141,6 +148,11 @@ public class CreateGoal : MonoBehaviour
                         {
                             GameObject ai = Instantiate(AIPrefeb);
                             ai.transform.position = offset;
+                        }
+                        else if (current == 3)
+                        {
+                            GameObject food = Instantiate(FoodPrefeb);
+                            food.transform.position = offset;
                         }
                         
                         

@@ -9,12 +9,14 @@ public class GridEnvironment : Environment
     public List<GameObject> actorObjs;
     public string[] players;
     public GameObject visualAgent;
+    public GameObject foodprefeb;
     int numObstacles;
     int numGoals;
     int gridSize;
     int[] objectPositions;
     float episodeReward;
     Vector3 agentPos;
+    Vector3[] foodPos = new Vector3[3];
 
     void Start()
     {
@@ -34,6 +36,9 @@ public class GridEnvironment : Environment
         gridSize = gridSizeSet;
         actorObjs[0] = GameObject.Find("agent(Clone)");
         agentPos = GameObject.Find("agent(Clone)").transform.position;
+        foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
+        foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
+        foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
         foreach (GameObject actor in actorObjs)
         {
             //DestroyImmediate(actor);
@@ -168,9 +173,9 @@ public class GridEnvironment : Environment
     public override void Reset()
     {
         base.Reset();
-        foreach (GameObject actor in actorObjs)
+        foreach (GameObject actor in GameObject.FindGameObjectsWithTag("food"))
         {
-            //DestroyImmediate(actor);
+            Destroy(actor);
         }
         //actorObjs = new List<GameObject>();
 
@@ -192,6 +197,12 @@ public class GridEnvironment : Environment
             {
                 actorObjs[i].transform.position = new Vector3(0,0,4);
                 
+            }
+            if (players[i] == "food")
+            {
+                GameObject actorObj = Instantiate(foodprefeb);
+                foodprefeb.transform.position = foodPos[i-2];
+
             }
         }
         episodeReward = 0;
@@ -252,6 +263,13 @@ public class GridEnvironment : Environment
         {
             reward = -1;
             done = true;
+        }
+        if (hitObjects.Where(col => col.gameObject.tag == "food").ToArray().Length == 1)
+        {
+            reward = -0.5f;
+            done = false;
+            Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
+            //destory(hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject);
         }
 
         LoadSpheres();

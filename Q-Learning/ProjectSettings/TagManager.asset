@@ -10,6 +10,7 @@ TagManager:
   - agent
   - pit
   - Plane
+  - food
   layers:
   - Default
   - TransparentFX

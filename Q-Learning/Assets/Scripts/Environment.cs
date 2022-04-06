@@ -48,7 +48,7 @@ public abstract class Environment : MonoBehaviour {
 			env_name = "Null",
 			action_space_type = "discrete",
 			state_space_type = "discrete",
-			num_agents = 1
+			num_agents = 2
 		};
 		begun = false;
 		acceptingSteps = true;
