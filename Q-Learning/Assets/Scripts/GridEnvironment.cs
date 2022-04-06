@@ -36,9 +36,13 @@ public class GridEnvironment : Environment
         gridSize = gridSizeSet;
         actorObjs[0] = GameObject.Find("agent(Clone)");
         agentPos = GameObject.Find("agent(Clone)").transform.position;
-        foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
-        foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
-        foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
+        if (GameObject.FindGameObjectsWithTag("food").Length > 0)
+        {
+            foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
+            foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
+            foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
+        }
+        
         foreach (GameObject actor in actorObjs)
         {
             //DestroyImmediate(actor);

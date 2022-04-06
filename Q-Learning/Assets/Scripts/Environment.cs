@@ -76,8 +76,9 @@ public abstract class Environment : MonoBehaviour {
 		framesSinceAction = 0;
 
 		int sendAction = Mathf.FloorToInt(actions [0]);
-		MiddleStep (sendAction);
 		mp.MoveStep();
+		MiddleStep (sendAction);
+		
 
 		StartCoroutine (WaitStep ());
 	}
