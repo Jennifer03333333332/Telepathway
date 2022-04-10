@@ -37,8 +37,9 @@ public abstract class Environment : MonoBehaviour {
 	public EnvironmentParameters envParameters;
 
 	public MovingPunishment mp;
+    public static readonly string NewLine;
 
-	public virtual void SetUp () {
+    public virtual void SetUp () {
 		envParameters = new EnvironmentParameters()
 		{
 			observation_size = 0,
@@ -76,7 +77,11 @@ public abstract class Environment : MonoBehaviour {
 		framesSinceAction = 0;
 
 		int sendAction = Mathf.FloorToInt(actions [0]);
-		mp.MoveStep();
+        if (mp != null)
+        {
+			mp.MoveStep();
+		}
+		
 		MiddleStep (sendAction);
 		
 

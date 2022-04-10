@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections;
 
 public class GridEnvironment : Environment
 {
@@ -17,6 +18,7 @@ public class GridEnvironment : Environment
     float episodeReward;
     Vector3 agentPos;
     Vector3[] foodPos = new Vector3[3];
+    public Animator AIanimator;
 
     void Start()
     {
@@ -30,10 +32,12 @@ public class GridEnvironment : Environment
     /// </summary>
     public void BeginNewGame()
     {
-        int gridSizeSet = (GameObject.Find("Dropdown").GetComponent<Dropdown>().value + 1) * 5;
+        //int gridSizeSet = (GameObject.Find("Dropdown").GetComponent<Dropdown>().value + 1) * 5;
         //numGoals = 1;
         //numObstacles = Mathf.FloorToInt((gridSizeSet * gridSizeSet) / 10f);
+        int gridSizeSet = 10;
         gridSize = gridSizeSet;
+        //Debug.Log(gridSizeSet);
         actorObjs[0] = GameObject.Find("agent(Clone)");
         agentPos = GameObject.Find("agent(Clone)").transform.position;
         if (GameObject.FindGameObjectsWithTag("food").Length > 0)
@@ -51,6 +55,7 @@ public class GridEnvironment : Environment
         SetUp();
         agent = new InternalAgent();
         agent.SendParameters(envParameters);
+        AIanimator.SetInteger("Move", 1);
         Reset();
 
     }
@@ -213,6 +218,25 @@ public class GridEnvironment : Environment
         EndReset();
     }
 
+    private IEnumerator MoveTo(Transform tr, Vector3 pos, float time)
+    {
+        float t = 0;
+        Vector3 startPos = tr.position;
+        while (true)
+        {
+            t += Time.deltaTime;
+            float a = t / time;
+            tr.position = Vector3.Lerp(startPos, pos, a);
+            Debug.Log("1");
+            if (a >= 1.0f)
+            {
+                //AIanimator.SetInteger("Move", 0);
+                break;
+            }
+            yield return null;
+        }
+    }
+
     /// <summary>
     /// Allows the agent to take actions, and set rewards accordingly.
     /// </summary>
@@ -220,40 +244,57 @@ public class GridEnvironment : Environment
     public override void MiddleStep(int action)
     {
         reward = -0.05f;
+        
         // 0 - Forward, 1 - Backward, 2 - Left, 3 - Right
         if (action == 3)
         {
+            var rotationVector = visualAgent.transform.rotation.eulerAngles;
+            rotationVector.y = 90;
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                visualAgent.transform.position = new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z);
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x+1, -0.45f, visualAgent.transform.position.z), waitTime));
+                //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z);
+                visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
 
         if (action == 2)
         {
+            var rotationVector = visualAgent.transform.rotation.eulerAngles;
+            rotationVector.y = -90;
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                visualAgent.transform.position = new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z);
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x - 1, -0.45f, visualAgent.transform.position.z), waitTime));
+                //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z);
+                visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
 
         if (action == 0)
         {
+            var rotationVector = visualAgent.transform.rotation.eulerAngles;
+            rotationVector.y = 0;
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1);
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z+1), waitTime));
+                //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1);
+                visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
 
         if (action == 1)
         {
+            var rotationVector = visualAgent.transform.rotation.eulerAngles;
+            rotationVector.y = 180;
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1);
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z-1), waitTime));
+                //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1);
+                visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
 
@@ -278,7 +319,10 @@ public class GridEnvironment : Environment
 
         LoadSpheres();
         episodeReward += reward;
-        GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
+        //GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
 
     }
+
+
+
 }

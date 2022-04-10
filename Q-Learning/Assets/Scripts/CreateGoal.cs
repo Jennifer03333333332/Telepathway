@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CreateGoal : MonoBehaviour
 {
@@ -142,7 +143,13 @@ public class CreateGoal : MonoBehaviour
                         else if (current == 1)
                         {
                             GameObject goal = Instantiate(GoalPrefeb);
+                            offset.y = 0.3f;
                             goal.transform.position = offset;
+                            if(SceneManager.GetActiveScene().name=="Level 2")
+                            {
+                                GameObject.Find("GameManager").GetComponent<ChangeUI>().NextStep();
+                            }
+
                         }
                         else if (current == 0)
                         {
@@ -154,6 +161,7 @@ public class CreateGoal : MonoBehaviour
                             GameObject food = Instantiate(FoodPrefeb);
                             food.transform.position = offset;
                         }
+
                         
                         
                     }
