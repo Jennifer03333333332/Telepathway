@@ -512,7 +512,7 @@ Transform:
   - {fileID: 1218835393}
   - {fileID: 1051527735}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &59483097
 PrefabInstance:
@@ -958,7 +958,7 @@ Transform:
   - {fileID: 246504310}
   - {fileID: 1251449868}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &120911254
 PrefabInstance:
@@ -1284,6 +1284,7 @@ GameObject:
   - component: {fileID: 159201995}
   - component: {fileID: 159201997}
   - component: {fileID: 159201998}
+  - component: {fileID: 159201999}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1329,6 +1330,8 @@ MonoBehaviour:
   visualAgent: {fileID: 0}
   foodprefeb: {fileID: 4352873070051389725, guid: ef7e0e8db28ed2745a95cecbeb049a4d, type: 3}
   AIanimator: {fileID: 854834745}
+  StartButton: {fileID: 0}
+  ResetButton: {fileID: 0}
 --- !u!4 &159201996
 Transform:
   m_ObjectHideFlags: 0
@@ -1365,6 +1368,9 @@ MonoBehaviour:
   FoodImagePrefeb: {fileID: 7007621600223082703, guid: fcc5a25c567cfb143975263249add841, type: 3}
   FoodPrefeb: {fileID: 4352873070051389725, guid: ef7e0e8db28ed2745a95cecbeb049a4d, type: 3}
   canvas: {fileID: 363761396}
+  AIagent: {fileID: 0}
+  AIImage: {fileID: 0}
+  startButton: {fileID: 0}
 --- !u!114 &159201998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,6 +1390,20 @@ MonoBehaviour:
   - {fileID: 767665931}
   Slider: {fileID: 1967009431}
   wantFood: {fileID: 1839285753}
+  lavatext: {fileID: 0}
+--- !u!114 &159201999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159201994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b05465dcd3fb544960118a77f3c04b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grass: {fileID: 2134860260}
 --- !u!1001 &167880314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4152,6 +4172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nature - Grass Patch Short (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803652465374576050, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7165349938858807369, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -4358,7 +4382,7 @@ Transform:
   - {fileID: 93074720}
   - {fileID: 1193600073}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &563059270
 PrefabInstance:
@@ -5468,8 +5492,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2125315623}
   - {fileID: 1459260387}
+  - {fileID: 2125315623}
   - {fileID: 975410547}
   - {fileID: 1075353813}
   m_Father: {fileID: 363761400}
@@ -5597,7 +5621,7 @@ Transform:
   - {fileID: 2132321480}
   - {fileID: 248273094}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &854834745 stripped
 Animator:
@@ -5725,7 +5749,7 @@ Transform:
   - {fileID: 694304405}
   - {fileID: 497129526}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912527407
 GameObject:
@@ -5840,7 +5864,7 @@ Transform:
   - {fileID: 1650245379}
   - {fileID: 520441365}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &917178506
 PrefabInstance:
@@ -6047,6 +6071,10 @@ PrefabInstance:
     - target: {fileID: 2803652465374576050, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
       propertyPath: m_Name
       value: Nature - Grass Patch Short (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2803652465374576050, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7165349938858807369, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6499,6 +6527,10 @@ PrefabInstance:
       value: agent(Clone)
       objectReference: {fileID: 0}
     - target: {fileID: 116090, guid: cf5eeef41c7d43c1a2d5478d79ae1481, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 116090, guid: cf5eeef41c7d43c1a2d5478d79ae1481, type: 3}
       propertyPath: m_TagString
       value: agent
       objectReference: {fileID: 0}
@@ -6559,6 +6591,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13692084, guid: cf5eeef41c7d43c1a2d5478d79ae1481, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20590532, guid: cf5eeef41c7d43c1a2d5478d79ae1481, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -6889,7 +6925,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wait for about 1 minute, you will see how smart the dinasour is.
+  m_Text: Wait for about 30 seconds (in max speed), you will see how smart the dinosour
+    is.
 --- !u!222 &1075353815
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7674,7 +7711,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start Training
+  m_Text: Next Level
 --- !u!222 &1258265933
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7753,7 +7790,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Without a goal, the little dinosaur will only randomly walk around.
+  m_Text: 'Without a reward (goal), the little dinosaur will only randomly walk around.
 
 '
 --- !u!222 &1263075834
@@ -8072,7 +8109,7 @@ Transform:
   - {fileID: 341200449}
   - {fileID: 1671884256}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345931899
 GameObject:
@@ -8508,6 +8545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nature - Grass Patch Short (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803652465374576050, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7165349938858807369, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -8864,11 +8905,11 @@ RectTransform:
   m_Children:
   - {fileID: 1258265931}
   m_Father: {fileID: 767665932}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -661, y: -300}
+  m_AnchoredPosition: {x: -661, y: -427}
   m_SizeDelta: {x: 215.1, y: 82.4144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1459260388
@@ -8915,9 +8956,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 159201995}
-        m_TargetAssemblyTypeName: GridEnvironment, Assembly-CSharp
-        m_MethodName: BeginNewGame
+      - m_Target: {fileID: 159201998}
+        m_TargetAssemblyTypeName: ChangeUI, Assembly-CSharp
+        m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9164,7 +9205,7 @@ Transform:
   - {fileID: 79580210}
   - {fileID: 1045572680}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548550570
 PrefabInstance:
@@ -10603,7 +10644,7 @@ Transform:
   - {fileID: 242538100}
   - {fileID: 1631364024}
   m_Father: {fileID: 2134860261}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1762688209 stripped
 GameObject:
@@ -11254,6 +11295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nature - Grass Patch Short (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2803652465374576050, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7165349938858807369, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -11873,7 +11918,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 0.999
   m_WholeNumbers: 0
-  m_Value: 0.962
+  m_Value: 0.999
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -12146,7 +12191,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 767665932}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12265,7 +12310,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reinforcement Learning
+  m_Text: 'Reinforcement Learning
+
+    (Reward)'
 --- !u!222 &2128278217
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12379,16 +12426,16 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 902976657}
-  - {fileID: 915618401}
-  - {fileID: 57679291}
-  - {fileID: 828459149}
-  - {fileID: 1501517587}
   - {fileID: 521406285}
-  - {fileID: 1749802941}
-  - {fileID: 1333424387}
-  - {fileID: 726488969}
+  - {fileID: 1501517587}
+  - {fileID: 828459149}
+  - {fileID: 57679291}
+  - {fileID: 915618401}
+  - {fileID: 902976657}
   - {fileID: 109911049}
+  - {fileID: 1749802941}
+  - {fileID: 726488969}
+  - {fileID: 1333424387}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GridEnvironment : Environment
 {
@@ -19,6 +20,8 @@ public class GridEnvironment : Environment
     Vector3 agentPos;
     Vector3[] foodPos = new Vector3[3];
     public Animator AIanimator;
+    public GameObject StartButton;
+    public GameObject ResetButton;
 
     void Start()
     {
@@ -35,10 +38,17 @@ public class GridEnvironment : Environment
         //int gridSizeSet = (GameObject.Find("Dropdown").GetComponent<Dropdown>().value + 1) * 5;
         //numGoals = 1;
         //numObstacles = Mathf.FloorToInt((gridSizeSet * gridSizeSet) / 10f);
+        
         int gridSizeSet = 10;
         gridSize = gridSizeSet;
         //Debug.Log(gridSizeSet);
         actorObjs[0] = GameObject.Find("agent(Clone)");
+        if (SceneManager.GetActiveScene().name == "Level 6")
+        {
+            StartButton.SetActive(false);
+            ResetButton.SetActive(true);
+            
+        }
         agentPos = GameObject.Find("agent(Clone)").transform.position;
         if (GameObject.FindGameObjectsWithTag("food").Length > 0)
         {
@@ -55,6 +65,10 @@ public class GridEnvironment : Environment
         SetUp();
         agent = new InternalAgent();
         agent.SendParameters(envParameters);
+        if (AIanimator == null)
+        {
+            AIanimator = actorObjs[0].GetComponent<Animator>();
+        }
         AIanimator.SetInteger("Move", 1);
         Reset();
 
@@ -92,9 +106,9 @@ public class GridEnvironment : Environment
         }
         */
         //players = playersList.ToArray();
-        Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        cam.transform.position = new Vector3((gridSize - 1), gridSize, -(gridSize - 1) / 2f);
-        cam.orthographicSize = (gridSize + 5f) / 2f;
+       // Camera cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        //cam.transform.position = new Vector3((gridSize - 1), gridSize, -(gridSize - 1) / 2f);
+        //cam.orthographicSize = (gridSize + 5f) / 2f;
         SetEnvironment();
     }
 
@@ -163,15 +177,25 @@ public class GridEnvironment : Environment
         float[] value_estimates = agent.GetValue();
         for (int i = 0; i < gridSize * gridSize; i++)
         {
-            GameObject value = (GameObject)GameObject.Instantiate(Resources.Load("value"));
+           // GameObject value = (GameObject)GameObject.Instantiate(Resources.Load("value"));
             int x = i / gridSize;
             int y = i % gridSize;
-            value.transform.position = new Vector3(x, 0.0f, y);
-            value.transform.localScale = new Vector3(value_estimates[i] / 1.25f, value_estimates[i] / 1.25f, value_estimates[i] / 1.25f);
+           // value.transform.position = new Vector3(x, 0.0f, y);
+            //value.transform.localScale = new Vector3(value_estimates[i] / 1.25f, value_estimates[i] / 1.25f, value_estimates[i] / 1.25f);
+            //Debug.Log(value_estimates[i]);
+            if(value_estimates[i] > 0)
+            {
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32((byte)((255 - (225 * value_estimates[i]*1.5))), 255,0,255));
+                Debug.Log((255 - (225 * value_estimates[i])));
+                //transform.GetComponent<GrassManager>().ChangeColor(x, y, Color.green);
+
+            }
+            
             if (value_estimates[i] < 0)
             {
-                Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
-                value.GetComponent<Renderer>().material = newMat;
+               // Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
+               // value.GetComponent<Renderer>().material = newMat;
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*1.5))),0,255));
             }
         }
     }
@@ -227,7 +251,7 @@ public class GridEnvironment : Environment
             t += Time.deltaTime;
             float a = t / time;
             tr.position = Vector3.Lerp(startPos, pos, a);
-            Debug.Log("1");
+            //Debug.Log("1");
             if (a >= 1.0f)
             {
                 //AIanimator.SetInteger("Move", 0);
@@ -314,6 +338,13 @@ public class GridEnvironment : Environment
             reward = -0.5f;
             done = false;
             Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
+            //destory(hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject);
+        }
+        if (hitObjects.Where(col => col.gameObject.tag == "largegoal").ToArray().Length == 1)
+        {
+            reward = 10f;
+            done = true;
+            //Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
             //destory(hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject);
         }
 
