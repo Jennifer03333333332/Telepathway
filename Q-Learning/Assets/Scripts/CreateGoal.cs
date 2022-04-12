@@ -18,12 +18,16 @@ public class CreateGoal : MonoBehaviour
     public GameObject FoodImagePrefeb;
     public GameObject FoodPrefeb;
     public GameObject canvas;
+    public GameObject AIagent;
+    public GameObject AIImage;
+    public GameObject startButton;
+
     GameObject MovingObject;
     int current = -1;
     // Start is called before the first frame update
     void Start()
     {
-        
+        AIagent = GameObject.FindGameObjectWithTag("agent");
 
     }
 
@@ -135,31 +139,59 @@ public class CreateGoal : MonoBehaviour
                                 offset.z = b - 1;
                             }
                         }
-                        if (current == 2)
+                        if (current == 2 )
                         {
-                            GameObject pit = Instantiate(PitPrefeb);
-                            pit.transform.position = offset;
+                            Debug.Log(offset);
+                            if (AIagent==null || (offset.x != AIagent.transform.position.x||offset.z!=AIagent.transform.position.z))
+                            {
+                                
+                                GameObject pit = Instantiate(PitPrefeb);
+                                pit.transform.position = new Vector3(offset.x,-0.4f,offset.z);
+                                if(SceneManager.GetActiveScene().name == "Level 3")
+                                {
+                                    GameObject.Find("GameManager").GetComponent<ChangeUI>().CountLava();
+                                }
+                                transform.GetComponent<GrassManager>().HideGrass((int)offset.x, (int)offset.z);
+                            }
+                            
                         }
                         else if (current == 1)
                         {
-                            GameObject goal = Instantiate(GoalPrefeb);
-                            offset.y = 0.3f;
-                            goal.transform.position = offset;
-                            if(SceneManager.GetActiveScene().name=="Level 2")
+                            if (AIagent == null || (offset.x != AIagent.transform.position.x || offset.z != AIagent.transform.position.z))
                             {
-                                GameObject.Find("GameManager").GetComponent<ChangeUI>().NextStep();
+                                GameObject goal = Instantiate(GoalPrefeb);
+                                offset.y = -0.4f;
+                                goal.transform.position = offset;
+                                if (SceneManager.GetActiveScene().name == "Level 2")
+                                {
+                                    GameObject.Find("GameManager").GetComponent<ChangeUI>().NextStep();
+                                }
+                                if (SceneManager.GetActiveScene().name == "Level 5")
+                                {
+                                    GameObject.Find("GameManager").GetComponent<ChangeUI>().CountLava();
+                                }
+                                transform.GetComponent<GrassManager>().HideGrass((int)offset.x, (int)offset.z);
                             }
+                                
 
                         }
                         else if (current == 0)
                         {
                             GameObject ai = Instantiate(AIPrefeb);
                             ai.transform.position = offset;
-                        }
+                            AIagent = ai;
+                            AIImage.SetActive(false);
+                            startButton.SetActive(true);
+}
                         else if (current == 3)
                         {
                             GameObject food = Instantiate(FoodPrefeb);
-                            food.transform.position = offset;
+                            food.transform.position = new Vector3(offset.x, -0.45f, offset.z);
+                            if (SceneManager.GetActiveScene().name == "Level 4")
+                            {
+                                GameObject.Find("GameManager").GetComponent<ChangeUI>().CountLava();
+                            }
+                            transform.GetComponent<GrassManager>().HideGrass((int)offset.x, (int)offset.z);
                         }
 
                         

@@ -64,7 +64,7 @@ Material:
     - _PatchesScale: 0.15
     - _PatchesSharpness: 1
     - _PatchesSize: 0.722
-    - _PatchesThreshold: 0.84
+    - _PatchesThreshold: 1
     - _ShadowStrength: 0
     - _WindDirection: -1
     - _WindEnabled: 1
@@ -75,8 +75,8 @@ Material:
     m_Colors:
     - Color_8625870c808d4f1b93a120fb2366b73e: {r: 0, g: 0, b: 0, a: 0}
     - Color_fa7bfd953c0f468faf964c3a5545c86d: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorBottom: {r: 0.2715718, g: 0.59607846, b: 0.23921567, a: 1}
-    - _ColorTop: {r: 0.47068372, g: 1, b: 0.06132078, a: 1}
+    - _ColorBottom: {r: 0.6603774, g: 0.52870995, b: 0.22739409, a: 1}
+    - _ColorTop: {r: 1, g: 1, b: 0, a: 1}
     - _GustColor: {r: 0.29411763, g: 0.6431373, b: 0.082352914, a: 1}
     - _PatchesColor: {r: 0.66981107, g: 0.9433962, b: 0.19134924, a: 1}
     - _PatchesOffset: {r: -7, g: 5, b: 0, a: 0}

@@ -11,6 +11,8 @@ TagManager:
   - pit
   - Plane
   - food
+  - Creature
+  - largegoal
   layers:
   - Default
   - TransparentFX

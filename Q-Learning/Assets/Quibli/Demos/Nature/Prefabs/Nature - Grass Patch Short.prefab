@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 7165349938858807369}
   - component: {fileID: 7165349938858807368}
   - component: {fileID: 7165349938858807374}
+  - component: {fileID: 655043053}
   m_Layer: 0
   m_Name: GrassMesh.assetLOD0
   m_TagString: Untagged
@@ -232,3 +233,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &655043053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7165349938858807373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a983f6ff88144a9420ae51985ec09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassshader: {fileID: 2100000, guid: 443826f78fa784b67a44a6c3cf2bb1c0, type: 2}
