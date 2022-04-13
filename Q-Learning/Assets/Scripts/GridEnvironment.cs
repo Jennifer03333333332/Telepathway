@@ -22,11 +22,16 @@ public class GridEnvironment : Environment
     public Animator AIanimator;
     public GameObject StartButton;
     public GameObject ResetButton;
+    public GameObject correct;
+    public GameObject wrong;
+    int trainingtimes;
+    public Text trainingtimeUI;
 
     void Start()
     {
         maxSteps = 100;
         waitTime = 0.001f;
+        trainingtimes = 0;
         //BeginNewGame();
     }
 
@@ -185,7 +190,7 @@ public class GridEnvironment : Environment
             //Debug.Log(value_estimates[i]);
             if(value_estimates[i] > 0)
             {
-                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32((byte)((255 - (225 * value_estimates[i]*1.5))), 255,0,255));
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32((byte)((255 - (225 * value_estimates[i]*2))), 255,0,255));
                 Debug.Log((255 - (225 * value_estimates[i])));
                 //transform.GetComponent<GrassManager>().ChangeColor(x, y, Color.green);
 
@@ -195,7 +200,7 @@ public class GridEnvironment : Environment
             {
                // Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
                // value.GetComponent<Renderer>().material = newMat;
-                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*1.5))),0,255));
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*2))),0,255));
             }
         }
     }
@@ -206,6 +211,12 @@ public class GridEnvironment : Environment
     public override void Reset()
     {
         base.Reset();
+        trainingtimes++;
+        if (trainingtimeUI != null)
+        {
+            trainingtimeUI.text = "Iteration: " + trainingtimes;
+        }
+        
         foreach (GameObject actor in GameObject.FindGameObjectsWithTag("food"))
         {
             Destroy(actor);
@@ -268,7 +279,7 @@ public class GridEnvironment : Environment
     public override void MiddleStep(int action)
     {
         reward = -0.05f;
-        
+        float time = waitTime;
         // 0 - Forward, 1 - Backward, 2 - Left, 3 - Right
         if (action == 3)
         {
@@ -277,7 +288,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x+1, -0.45f, visualAgent.transform.position.z), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x+1, -0.45f, visualAgent.transform.position.z), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -290,7 +301,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x - 1, -0.45f, visualAgent.transform.position.z), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x - 1, -0.45f, visualAgent.transform.position.z), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -303,7 +314,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z+1), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z+1), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -316,22 +327,34 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z-1), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z-1), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
+        StartCoroutine(CheckGoal(time));
+        
+        //GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
 
+    }
+
+    IEnumerator CheckGoal(float time)
+    {
+        yield return new WaitForSeconds(time);
         Collider[] hitObjects = Physics.OverlapBox(visualAgent.transform.position, new Vector3(0.3f, 0.3f, 0.3f));
         if (hitObjects.Where(col => col.gameObject.tag == "goal").ToArray().Length == 1)
         {
             reward = 1;
             done = true;
+            GameObject c = Instantiate(correct);
+            c.transform.position = hitObjects.Where(col => col.gameObject.tag == "goal").ToArray()[0].transform.position;
         }
         if (hitObjects.Where(col => col.gameObject.tag == "pit").ToArray().Length == 1)
         {
             reward = -1;
             done = true;
+            GameObject c = Instantiate(wrong);
+            c.transform.position = hitObjects.Where(col => col.gameObject.tag == "pit").ToArray()[0].transform.position;
         }
         if (hitObjects.Where(col => col.gameObject.tag == "food").ToArray().Length == 1)
         {
@@ -350,8 +373,6 @@ public class GridEnvironment : Environment
 
         LoadSpheres();
         episodeReward += reward;
-        //GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
-
     }
 
 

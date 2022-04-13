@@ -40,11 +40,8 @@ public class ChangeUI : MonoBehaviour
 
             if(SceneManager.GetActiveScene().name=="Level 2")
             {
-                if (step == 1)
-                {
-                    wantFood.SetActive(true);
-                }
-                if (step == 3)
+                
+                if (step == 2)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -587, 0);
                     wantFood.SetActive(false);
