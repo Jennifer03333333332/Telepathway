@@ -12,7 +12,7 @@ public class LayerController : MonoBehaviour
     static string image_path = "/Resources/Textures/PreprocessImageData/";///../Assets/
 
     public static string[] imageList;
-    public int image_nums = 4;
+    public int image_nums = 6;
     //Painting folder
 
     public GameObject Painting_Folder;//
@@ -29,11 +29,13 @@ public class LayerController : MonoBehaviour
     public Vector3 distribution = new Vector3(0, 0, 0.5f);
     private void Awake()
     {
-        imageList = new string[image_nums];
+        imageList = new string[6];
         imageList[0] = "Galaxy";
         imageList[1] = "Starrynight";
         imageList[2] = "Sunflower";
-        imageList[3] = "Titanic";
+        imageList[3] = "Circle_1";
+        imageList[4] = "Circle_2";
+        imageList[5] = "Circle_3";
     }
     //at the start
     private void Start()

@@ -16,7 +16,7 @@ public class SetText : MonoBehaviour
     public void SetTextToValue()
     {
 
-        value = (float)(Mathf.Round(sliderAsset.value * 1000)) / 1000;//(float)sliderAsset.value;
+        value = (float)(Mathf.Round(sliderAsset.value * 100)) / 100;//(float)sliderAsset.value;
         textAsset.text = value + "";
     }
 

@@ -10,6 +10,7 @@ public class UI_Mgr : MonoBehaviour
     public GameObject Painting_Folder;
 
     public Slider k_slider;
+    
     public GameObject Choose_Img_UI;
     public GameObject Change_Distribution_UI;
     public List<Sprite> textures;
@@ -26,13 +27,27 @@ public class UI_Mgr : MonoBehaviour
     {
         Choose_Img_UI.SetActive(true);
         Change_Distribution_UI.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
     private void Update()
     {
         //Let it follow the left controller :(
-        transform.position = Camera.main.transform.position + new Vector3(0, -0.6f, -0.5f);//LeftHand.transform.position + new Vector3(0,-0.3f,0);
+        Vector3 forward_cam = Camera.main.transform.forward;
+        //transform.position = Camera.main.transform.position + new Vector3(forward_cam.x, forward_cam.y - 0.4f, forward_cam.z*0.4f);//+ - 0.7f  * 0.1f 
+        //transform.position = Camera.main.transform.position + new Vector3(0, -0.6f, -0.5f);
+        transform.position = LeftHand.transform.position + new Vector3(0, -0.25f, 0);
+
+        //new Vector3(0, -0.6f, -0.5f);//LeftHand.transform.position + new Vector3(0,-0.3f,0);
+
         //transform.forward = new Vector3(transform.position.x, 0, transform.position.z) - new Vector3(Camera.main.transform.position.x, 0, Camera.main.transform.position.z);
-        transform.LookAt(Camera.main.transform);
+        
+        Vector3 forward_UI = transform.position - Camera.main.transform.position;
+        //Debug.Log(forward_UI);
+        forward_UI.y = -0.2f;
+        transform.forward = forward_UI;
+        
+
+        //transform.LookAt(Camera.main.transform);
 
 
         if (!viz_start) return;
@@ -81,17 +96,19 @@ public class UI_Mgr : MonoBehaviour
     }
     public void SetRotationSpeed(float rotateSpeedUpdate)
     {
-        rotation_speed = rotateSpeedUpdate;
+        rotation_speed = (float)(Mathf.Round(rotateSpeedUpdate * 100)) / 100; ;
         //Debug.Log(rotation_speed);
     }
     public void SetSpread(float spread_val)
     {
-        spread = spread_val;
+        spread = (float)(Mathf.Round(spread_val * 100)) / 100;
+
+        //spread_val; 
         //Debug.Log(spread_val);
     }
     public void SetZoom(float zoom_val)
     {
-        zoom = zoom_val;
+        zoom = (float)(Mathf.Round(zoom_val * 100)) / 100;
         //Debug.Log(zoom_val);
 
     }
