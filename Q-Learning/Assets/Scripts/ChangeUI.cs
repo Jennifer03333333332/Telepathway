@@ -27,7 +27,13 @@ public class ChangeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SceneManager.GetActiveScene().name == "Level 2" && step==2&&!UISteps[step].transform.GetChild(0).gameObject.activeSelf)
+        {
+            if (GetComponent<GridEnvironment>().trainingtimes > 200)
+            {
+                UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
     }
 
     public void NextStep()
@@ -45,7 +51,7 @@ public class ChangeUI : MonoBehaviour
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -587, 0);
                     wantFood.SetActive(false);
-                    StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
+                    //StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
                     
                 }
                 
@@ -56,7 +62,7 @@ public class ChangeUI : MonoBehaviour
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -587, 0);
                     wantFood.SetActive(false);
-                    StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
+                    //StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
 
                 }
             }

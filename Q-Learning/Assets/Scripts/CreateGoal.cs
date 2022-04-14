@@ -21,13 +21,16 @@ public class CreateGoal : MonoBehaviour
     public GameObject AIagent;
     public GameObject AIImage;
     public GameObject startButton;
-
+    public GameObject HighlightPrefeb;
+    GameObject highlight;
     GameObject MovingObject;
     int current = -1;
     // Start is called before the first frame update
     void Start()
     {
         AIagent = GameObject.FindGameObjectWithTag("agent");
+        highlight = Instantiate(HighlightPrefeb);
+        highlight.SetActive(false);
 
     }
 
@@ -77,13 +80,79 @@ public class CreateGoal : MonoBehaviour
 
 
         }
+        if (isMouseDown)
+        {
+            Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Plane")
+                {
+                    highlight.SetActive(true);
+                    Debug.Log(hit.transform.position);
+                    offset = hit.point;
+                    offset.y = -0.3f;
+                    int a = (int)offset.x;
+                    int b = (int)offset.z;
+                    if (offset.x > 0)
+                    {
+                        if (offset.x - a < 0.5f)
+                        {
+                            offset.x = a;
+                        }
+                        else
+                        {
+                            offset.x = a + 1;
+                        }
+                    }
+                    else
+                    {
+                        if (offset.x - a > -0.5f)
+                        {
+                            offset.x = a;
+                        }
+                        else
+                        {
+                            offset.x = a - 1;
+                        }
+                    }
+                    if (offset.z > 0)
+                    {
+                        if (offset.z - b < 0.5f)
+                        {
+                            offset.z = b;
+                        }
+                        else
+                        {
+                            offset.z = b + 1;
+                        }
+                    }
+                    else
+                    {
+                        if (offset.z - b > -0.5f)
+                        {
+                            offset.z = b;
+                        }
+                        else
+                        {
+                            offset.z = b - 1;
+                        }
+                    }
+                    highlight.transform.position = offset;
+                }
+                else
+                {
+                    highlight.SetActive(false);
+                }
+            }
+        }
         
         if (Input.GetMouseButtonUp(0))
         {
             if (isMouseDown)
             {
                 Destroy(MovingObject);
-
+                highlight.SetActive(false);
                 Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))

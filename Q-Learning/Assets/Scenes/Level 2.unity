@@ -1319,6 +1319,9 @@ MonoBehaviour:
   waitTime: 0
   episodeCount: 1
   humanControl: 0
+  playeatanimation: 0
+  playdieanimation: 0
+  run: 1
   bumper: 0
   mp: {fileID: 0}
   actorObjs:
@@ -1334,6 +1337,7 @@ MonoBehaviour:
   ResetButton: {fileID: 0}
   correct: {fileID: 3178285247426274221, guid: dcc2fddf302b3ea4ba61ab2ff4c0360d, type: 3}
   wrong: {fileID: 4407381472059892180, guid: 467bb17c03f05a245a5233cbf76945f2, type: 3}
+  trainingtimes: 0
   trainingtimeUI: {fileID: 1982996936}
 --- !u!4 &159201996
 Transform:
@@ -1374,6 +1378,7 @@ MonoBehaviour:
   AIagent: {fileID: 0}
   AIImage: {fileID: 0}
   startButton: {fileID: 0}
+  HighlightPrefeb: {fileID: 6235079564182793546, guid: 48469b066c91f5e44b9534f4033807ae, type: 3}
 --- !u!114 &159201998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6848,7 +6853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wait for about 30 seconds (in max speed), you will see how smart the dinosour
+  m_Text: Wait for about 200 times iterations, you will see how smart the dinosour
     is.
 --- !u!222 &1075353815
 CanvasRenderer:
@@ -11588,9 +11593,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 249635220}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 0.999
-  m_WholeNumbers: 0
-  m_Value: 0.999
+  m_MaxValue: 2
+  m_WholeNumbers: 1
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
