@@ -6740,8 +6740,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wait for about 30 seconds (in max speed), you will see how dinosour dodge
-    the lava.
+  m_Text: Wait for about 200 iterations, you will see how dinosour dodge the lava.
 --- !u!222 &1075353815
 CanvasRenderer:
   m_ObjectHideFlags: 0

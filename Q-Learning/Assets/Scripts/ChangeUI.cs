@@ -34,6 +34,13 @@ public class ChangeUI : MonoBehaviour
                 UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
+        if (SceneManager.GetActiveScene().name == "Level 3" && step == 3 && !UISteps[step].transform.GetChild(0).gameObject.activeSelf)
+        {
+            if (GetComponent<GridEnvironment>().trainingtimes > 200)
+            {
+                UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
     }
 
     public void NextStep()
@@ -61,7 +68,7 @@ public class ChangeUI : MonoBehaviour
                 if (step == 3)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -587, 0);
-                    wantFood.SetActive(false);
+                    //wantFood.SetActive(false);
                     //StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
 
                 }
@@ -71,7 +78,7 @@ public class ChangeUI : MonoBehaviour
                 if (step == 2)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -366, 0);
-                    wantFood.SetActive(false);
+                    //wantFood.SetActive(false);
                 }
             }
             if (SceneManager.GetActiveScene().name == "Level 5")
@@ -79,7 +86,7 @@ public class ChangeUI : MonoBehaviour
                 if (step == 2)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -366, 0);
-                    wantFood.SetActive(false);
+                    //wantFood.SetActive(false);
                 }
             }
         }

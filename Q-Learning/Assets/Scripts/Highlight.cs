@@ -11,7 +11,7 @@ public class Highlight : MonoBehaviour
     void Start()
     {
         myMaterial = GetComponent<MeshRenderer>().material;
-        StartCoroutine(Appear(myMaterial, 0.01f, pulseTime));
+        //StartCoroutine(Appear(myMaterial, 0.01f, pulseTime));
     }
 
     // Update is called once per frame
