@@ -3377,8 +3377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -114}
-  m_SizeDelta: {x: 512.2, y: 420.7375}
+  m_AnchoredPosition: {x: -621, y: -105}
+  m_SizeDelta: {x: 512.2, y: 439.9196}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488213225
 MonoBehaviour:
@@ -3412,7 +3412,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Now, change the environment during the training time. \n\nDrag the lava
     to environment to see how dinosaur react."
 --- !u!222 &488213226
@@ -3535,8 +3535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -38.0719}
-  m_SizeDelta: {x: 512.2, y: 486.8813}
+  m_AnchoredPosition: {x: -628, y: -46}
+  m_SizeDelta: {x: 512.2, y: 580.0516}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515174337
 MonoBehaviour:
@@ -3570,10 +3570,10 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "Great, so he knows what to get, what to avoid, and how to pick the best,
-    fastest, and easiest path to that goal.  \n\nBut he also needs to learn how to
-    adapt to a dynamic changing environment."
+    m_LineSpacing: 1.25
+  m_Text: "Great, so he knows what to get, what to avoid, and how to pick the best
+    way.  \n\nHowever, world is cruel. He also needs to learn how to adapt to a dynamic
+    changing environment."
 --- !u!222 &515174338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3618,7 +3618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -657, y: -375}
+  m_AnchoredPosition: {x: -657, y: -476}
   m_SizeDelta: {x: 215.1, y: 82.4144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &517030228
@@ -3750,7 +3750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: 398.00006}
+  m_AnchoredPosition: {x: -443, y: 445}
   m_SizeDelta: {x: 84.9403, y: 18.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530189948
@@ -9657,7 +9657,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -9667,7 +9667,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: You may notice that the grass changes color when the dinosour reach that
     square. That's how the dinosour remeber the world. The greener the grass, the
     safer it is for getting to that goal. The redder it is, the more risky, and the
@@ -12385,7 +12385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -721, y: 152}
+  m_AnchoredPosition: {x: -721, y: 163}
   m_SizeDelta: {x: 300, y: 128.0753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1913031983
@@ -12420,7 +12420,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Training Speed
 --- !u!222 &1913031984
 CanvasRenderer:
@@ -12996,7 +12996,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Click Start Training button. Guess which meat the dinosour will choose.
 --- !u!222 &1979107376
 CanvasRenderer:
@@ -13678,7 +13678,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: 'First, drag some meat to the environment. '
 --- !u!222 &2067171778
 CanvasRenderer:

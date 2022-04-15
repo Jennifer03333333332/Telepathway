@@ -792,7 +792,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Click Start Training button to see how dinosaur find the meat without reaching
     the lava.
 --- !u!222 &96923288
@@ -6787,7 +6787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -231}
+  m_AnchoredPosition: {x: -621, y: -276}
   m_SizeDelta: {x: 512.2, y: 420.7375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075353814
@@ -6822,7 +6822,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Wait for about 200 iterations, you will see how dinosour dodge the lava.
 --- !u!222 &1075353815
 CanvasRenderer:
@@ -7662,8 +7662,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -67.9939}
-  m_SizeDelta: {x: 512.2, y: 590.7253}
+  m_AnchoredPosition: {x: -621, y: -83.75068}
+  m_SizeDelta: {x: 512.2, y: 622.2388}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1263075833
 MonoBehaviour:
@@ -7697,7 +7697,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "But what about danger? How do we warn our dinosaur to stay away from a
     potential threat out there? \n\nIn this case, we\u2019ll give him a little punishment
     to make sure he stays safe in the future\n\n"
@@ -8093,7 +8093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -657, y: -468}
+  m_AnchoredPosition: {x: -657, y: -498}
   m_SizeDelta: {x: 215.1, y: 82.4144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1345931901
@@ -8929,7 +8929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -661, y: -456}
+  m_AnchoredPosition: {x: -661, y: -490}
   m_SizeDelta: {x: 215.1, y: 82.4144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1459260388
@@ -9364,7 +9364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: 398.00006}
+  m_AnchoredPosition: {x: -443, y: 441.5}
   m_SizeDelta: {x: 84.9403, y: 18.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556666349
@@ -10109,7 +10109,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "We can put down some fake lava, so the dinosaur knows that\u2019s a bad
     square, he\u2019ll avoid walking on those areas in the future. "
 --- !u!222 &1721417899
@@ -12777,7 +12777,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Use the slider to change the training speed
 --- !u!222 &2125315625
 CanvasRenderer:

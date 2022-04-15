@@ -910,10 +910,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "He\u2019s never eaten before. But as soon as he tries a bite of food,
-    he\u2019ll love it! He\u2019ll definitely go looking for it again after he tries
-    it. "
+    m_LineSpacing: 1.25
+  m_Text: Click Start Training to see how the dinosour find the meat
 --- !u!222 &96923288
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4584,7 +4582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: 398.00006}
+  m_AnchoredPosition: {x: -443, y: 440.7}
   m_SizeDelta: {x: 84.9403, y: 18.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598166755
@@ -7145,7 +7143,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: Wait for about 200 times iterations, you will see how smart the dinosour
     is.
 --- !u!222 &1075353815
@@ -10331,7 +10329,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "\u201CHey! You there\u2014 I need your help! I am so hungry. Could you
     help me find some food?\"\n\nDrag the meat somewhere in the environment to feed
     him."
@@ -12280,10 +12278,9 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "We\u2019ll hope he bumps into it by chance to start, and then he\u2019ll
-    start trying to remember how to get there next time, so he can find it even better
-    each time."
+    m_LineSpacing: 1.25
+  m_Text: "As long as he finds the meat, and then he\u2019ll start trying to remember
+    how to get there next time,"
 --- !u!222 &2125315625
 CanvasRenderer:
   m_ObjectHideFlags: 0

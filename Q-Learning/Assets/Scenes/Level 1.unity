@@ -6956,7 +6956,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Great! It looks like he\u2019s moving all over! He can definitely get
     anywhere he needs to go now.\n\nBut\u2026 where should he go? Without a goal, 
     he will just walk around randomly forever\u2026 \n\n"
@@ -7760,7 +7760,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "The little dinosour doesn\u2019t know how to walk yet, so he is trying
     to learn how go forward, backwards, left and right\r\n\n\n\n"
 --- !u!222 &1391012893
@@ -8922,7 +8922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: 398}
+  m_AnchoredPosition: {x: -443, y: 439.8}
   m_SizeDelta: {x: 84.9403, y: 18.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1654009564
