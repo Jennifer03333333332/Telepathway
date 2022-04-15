@@ -22,6 +22,7 @@ public class GridEnvironment : Environment
     public Animator AIanimator;
     public GameObject StartButton;
     public GameObject ResetButton;
+    public GameObject QuitButton;
     public GameObject correct;
     public GameObject wrong;
     public int trainingtimes;
@@ -53,6 +54,7 @@ public class GridEnvironment : Environment
         {
             StartButton.SetActive(false);
             ResetButton.SetActive(true);
+            QuitButton.SetActive(true);
             
         }
         agentPos = GameObject.Find("agent(Clone)").transform.position;

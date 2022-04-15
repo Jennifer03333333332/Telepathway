@@ -29,14 +29,14 @@ public class ChangeUI : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level 2" && step==2&&!UISteps[step].transform.GetChild(0).gameObject.activeSelf)
         {
-            if (GetComponent<GridEnvironment>().trainingtimes > 200)
+            if (GetComponent<GridEnvironment>().trainingtimes > 100)
             {
                 UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
         if (SceneManager.GetActiveScene().name == "Level 3" && step == 3 && !UISteps[step].transform.GetChild(0).gameObject.activeSelf)
         {
-            if (GetComponent<GridEnvironment>().trainingtimes > 200)
+            if (GetComponent<GridEnvironment>().trainingtimes > 100)
             {
                 UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
             }
@@ -65,7 +65,7 @@ public class ChangeUI : MonoBehaviour
                 
                 if (step == 2)
                 {
-                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -747, 0);
+                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -670, 0);
                     wantFood.SetActive(false);
                     //StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
                     
@@ -94,7 +94,7 @@ public class ChangeUI : MonoBehaviour
             {
                 if (step == 3)
                 {
-                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -366, 0);
+                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -316, 0);
                     //wantFood.SetActive(false);
                 }
             }
@@ -140,5 +140,9 @@ public class ChangeUI : MonoBehaviour
         }
     }
 
+    public void QuitProgram()
+    {
+        Application.Quit();
+    }
 
 }

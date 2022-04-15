@@ -1764,6 +1764,7 @@ GameObject:
   - component: {fileID: 231883444}
   - component: {fileID: 231883442}
   - component: {fileID: 231883443}
+  - component: {fileID: 231883445}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1824,6 +1825,14 @@ MonoBehaviour:
   Detail: {fileID: 1332687700}
 --- !u!124 &231883444
 Behaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231883441}
+  m_Enabled: 1
+--- !u!81 &231883445
+AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6946,7 +6955,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 44
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -7750,7 +7759,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 44
+    m_FontSize: 34
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2

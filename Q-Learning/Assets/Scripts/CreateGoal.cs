@@ -228,6 +228,10 @@ public class CreateGoal : MonoBehaviour
                             {
                                 
                                 GameObject pit = Instantiate(PitPrefeb);
+                                if (SoundMgr.Instance != null)
+                                {
+                                    SoundMgr.Instance.PlaySound(4);
+                                }
                                 pit.transform.position = new Vector3(offset.x,-0.4f,offset.z);
                                 if(SceneManager.GetActiveScene().name == "Level 3")
                                 {
@@ -242,6 +246,10 @@ public class CreateGoal : MonoBehaviour
                             if (AIagent == null || (offset.x != agentpos.x || offset.z != agentpos.z))
                             {
                                 GameObject goal = Instantiate(GoalPrefeb);
+                                if (SoundMgr.Instance != null)
+                                {
+                                    SoundMgr.Instance.PlaySound(3);
+                                }
                                 offset.y = -0.4f;
                                 goal.transform.position = offset;
                                 if (SceneManager.GetActiveScene().name == "Level 2")
@@ -260,6 +268,10 @@ public class CreateGoal : MonoBehaviour
                         else if (current == 0)
                         {
                             GameObject ai = Instantiate(AIPrefeb);
+                            if (SoundMgr.Instance != null)
+                            {
+                                SoundMgr.Instance.PlaySound(4);
+                            }
                             ai.transform.position = offset;
                             AIagent = ai;
                             AIImage.SetActive(false);
@@ -269,6 +281,11 @@ public class CreateGoal : MonoBehaviour
                         {
                             GameObject food = Instantiate(FoodPrefeb);
                             food.transform.position = new Vector3(offset.x, -0.45f, offset.z);
+                            if (SoundMgr.Instance != null)
+                            {
+                                SoundMgr.Instance.PlaySound(4);
+                            }
+                           
                             if (SceneManager.GetActiveScene().name == "Level 4")
                             {
                                 GameObject.Find("GameManager").GetComponent<ChangeUI>().CountLava();

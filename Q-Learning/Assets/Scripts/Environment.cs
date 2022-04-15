@@ -157,17 +157,31 @@ public abstract class Environment : MonoBehaviour {
 
 	IEnumerator EatAnimation()
     {
-        
-        
-			//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
-			//yield return new WaitForSeconds(2f);
-			GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetTrigger("Eat");
+
+		if (SoundMgr.Instance != null)
+		{
+			
+			SoundMgr.Instance.PlaySound(5);
+			SoundMgr.Instance.PlaySound(7);
+			
+		}
+		//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
+		//yield return new WaitForSeconds(2f);
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetTrigger("Eat");
 			GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
 			//yield return new WaitForSeconds(1f);
 			//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Idle", 0);
-			yield return new WaitForSeconds(4f);
+			yield return new WaitForSeconds(2f);
+		if (SoundMgr.Instance != null)
+		{
+
 			
-			GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 1);
+			SoundMgr.Instance.PlaySound(7);
+
+		}
+		yield return new WaitForSeconds(2f);
+
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 1);
 		
 		playeatanimation = false;
 		Reset();
@@ -176,8 +190,12 @@ public abstract class Environment : MonoBehaviour {
 
 	IEnumerator DieAnimation()
 	{
-
-
+        if (SoundMgr.Instance != null)
+        {
+			SoundMgr.Instance.PlayDieSound();
+			SoundMgr.Instance.PlaySound(6);
+		}
+		
 		//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
 		//yield return new WaitForSeconds(2f);
 		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetTrigger("Die");
