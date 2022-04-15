@@ -1722,7 +1722,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Click Start Training button. \n\nGuess which road the dinosour will choose."
 --- !u!222 &96923288
 CanvasRenderer:
@@ -5928,10 +5928,10 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "You may notice that sometimes the dinosour will not follow the optimal
-    way it found. \n\nThis is because the dinosour still wants to try if there is
-    a better way."
+    way it found. \nThis is because the dinosour still wants to try if there is a
+    better way."
 --- !u!222 &548623783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9754,7 +9754,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Do you guess correctly? \n\nAnyone would prefer grass to sharp rocks!"
 --- !u!222 &1075353815
 CanvasRenderer:
@@ -11696,7 +11696,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Let\u2019s put down some rocks on the path. Those won\u2019t burn him
     like lava, and he won\u2019t have to restart, but the rock hurt and slow him
     down."
@@ -18451,8 +18451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -51.005104}
-  m_SizeDelta: {x: 512.2, y: 474.9477}
+  m_AnchoredPosition: {x: -621, y: -39.6821}
+  m_SizeDelta: {x: 512.2, y: 626.3118}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2111864835
 MonoBehaviour:
@@ -18486,7 +18486,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.25
   m_Text: "Mortal danger isn\u2019t the only peril out there, sometimes it\u2019s
     just better to encourage faster routes! \n\nWe don\u2019t want our baby dinosaur
     getting more tired than he has to. "

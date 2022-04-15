@@ -12280,7 +12280,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
   m_Text: "As long as he finds the meat, and then he\u2019ll start trying to remember
-    how to get there next time,"
+    how to get there next time."
 --- !u!222 &2125315625
 CanvasRenderer:
   m_ObjectHideFlags: 0
