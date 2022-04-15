@@ -24,11 +24,17 @@ public class CreateGoal : MonoBehaviour
     public GameObject HighlightPrefeb;
     GameObject highlight;
     GameObject MovingObject;
+    Vector3 agentpos;
     int current = -1;
     // Start is called before the first frame update
     void Start()
     {
         AIagent = GameObject.FindGameObjectWithTag("agent");
+        if (AIagent != null)
+        {
+            agentpos = AIagent.transform.position;
+        }
+        //agentpos = AIagent.transform.position;
         highlight = Instantiate(HighlightPrefeb);
         highlight.SetActive(false);
 
@@ -37,7 +43,14 @@ public class CreateGoal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (AIagent == null)
+        {
+            if (GameObject.FindGameObjectWithTag("agent") != null)
+            {
+                AIagent = GameObject.FindGameObjectWithTag("agent");
+                agentpos = AIagent.transform.position;
+            }
+        }
         
         
         if (Input.GetMouseButtonDown(0) && !isMouseDown)
@@ -211,7 +224,7 @@ public class CreateGoal : MonoBehaviour
                         if (current == 2 )
                         {
                             Debug.Log(offset);
-                            if (AIagent==null || (offset.x != AIagent.transform.position.x||offset.z!=AIagent.transform.position.z))
+                            if (AIagent==null || (offset.x != agentpos.x||offset.z!= agentpos.z))
                             {
                                 
                                 GameObject pit = Instantiate(PitPrefeb);
@@ -226,7 +239,7 @@ public class CreateGoal : MonoBehaviour
                         }
                         else if (current == 1)
                         {
-                            if (AIagent == null || (offset.x != AIagent.transform.position.x || offset.z != AIagent.transform.position.z))
+                            if (AIagent == null || (offset.x != agentpos.x || offset.z != agentpos.z))
                             {
                                 GameObject goal = Instantiate(GoalPrefeb);
                                 offset.y = -0.4f;

@@ -1821,6 +1821,7 @@ MonoBehaviour:
   Slider: {fileID: 0}
   wantFood: {fileID: 0}
   lavatext: {fileID: 0}
+  Detail: {fileID: 1332687700}
 --- !u!124 &231883444
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2653,6 +2654,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b49553836506417e8860dca82d9fdb5, type: 3}
+--- !u!1 &363654017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363654018}
+  - component: {fileID: 363654020}
+  - component: {fileID: 363654019}
+  m_Layer: 5
+  m_Name: TitleText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &363654018
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363654017}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -44}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1332687701}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270.07343, y: -127}
+  m_SizeDelta: {x: 512.2, y: 259.593}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &363654019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363654017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 37
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 65
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Action is one component of Reinforcement Learning. It means the possible
+    behaviors the AI may have. '
+--- !u!222 &363654020
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363654017}
+  m_CullTransparentMesh: 1
 --- !u!1 &363761396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3969,7 +4050,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -657, y: -375}
+  m_AnchoredPosition: {x: -657, y: -423}
   m_SizeDelta: {x: 215.1, y: 82.4144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648911785
@@ -6840,8 +6921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -621, y: -66}
-  m_SizeDelta: {x: 512.2, y: 420.7375}
+  m_AnchoredPosition: {x: -621, y: -32.944416}
+  m_SizeDelta: {x: 512.2, y: 494.6263}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214885735
 MonoBehaviour:
@@ -6876,9 +6957,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Without a reward (goal), the little dinosaur will only randomly walk around.
-
-'
+  m_Text: "Great! It looks like he\u2019s moving all over! He can definitely get
+    anywhere he needs to go now.\n\nBut\u2026 where should he go? Without a goal, 
+    he will just walk around randomly forever\u2026 \n\n"
 --- !u!222 &1214885736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7323,13 +7404,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 363654018}
   m_Father: {fileID: 363761400}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -139, y: -417}
+  m_AnchoredPosition: {x: -139, y: 413}
   m_SizeDelta: {x: 548.1469, y: 259.4335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1332687702
@@ -7643,7 +7725,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -635, y: -68}
+  m_AnchoredPosition: {x: -619, y: -133}
   m_SizeDelta: {x: 512.2, y: 479.8358}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391012892
@@ -7679,14 +7761,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'A little dinosour was just born. It starts to learn how to walk.
-
-
-    It
-    didn'' t take long for it to learn to move forward, move backward, turn left
-    and trun right
-
-'
+  m_Text: "The little dinosour doesn\u2019t know how to walk yet, so he is trying
+    to learn how go forward, backwards, left and right\r\n\n\n\n"
 --- !u!222 &1391012893
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8378,7 +8454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 275, y: -116}
+  m_AnchoredPosition: {x: 250, y: -116}
   m_SizeDelta: {x: 512.2, y: 112.6998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1524062488
@@ -8829,7 +8905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1654009563
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8839,14 +8915,14 @@ RectTransform:
   m_GameObject: {fileID: 1654009562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 209}
-  m_LocalScale: {x: 1, y: 4.5972667, z: 1}
+  m_LocalScale: {x: 0.78, y: 3.585868, z: 0.78}
   m_Children: []
   m_Father: {fileID: 363761400}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -466.6, y: -485}
+  m_AnchoredPosition: {x: -443, y: 398}
   m_SizeDelta: {x: 84.9403, y: 18.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1654009564
@@ -8892,7 +8968,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1654009565}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 231883443}
+        m_TargetAssemblyTypeName: ChangeUI, Assembly-CSharp
+        m_MethodName: ShowDetail
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1654009565
 MonoBehaviour:
   m_ObjectHideFlags: 0

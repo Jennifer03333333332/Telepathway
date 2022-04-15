@@ -11,7 +11,7 @@ public class ChangeUI : MonoBehaviour
     public GameObject Slider;
     public GameObject wantFood;
     public Text lavatext;
-    
+    public GameObject Detail;
     int step = 0;
     int maxLava = 3;
     //int count = 0;
@@ -41,6 +41,15 @@ public class ChangeUI : MonoBehaviour
                 UISteps[step].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void NextStep()
@@ -56,7 +65,7 @@ public class ChangeUI : MonoBehaviour
                 
                 if (step == 2)
                 {
-                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -587, 0);
+                    Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -747, 0);
                     wantFood.SetActive(false);
                     //StartCoroutine(ShowNextLevelButton(UISteps[step].transform.GetChild(0).gameObject, 30));
                     
@@ -75,7 +84,7 @@ public class ChangeUI : MonoBehaviour
             }
             if (SceneManager.GetActiveScene().name == "Level 4")
             {
-                if (step == 2)
+                if (step == 3)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -366, 0);
                     //wantFood.SetActive(false);
@@ -83,7 +92,7 @@ public class ChangeUI : MonoBehaviour
             }
             if (SceneManager.GetActiveScene().name == "Level 5")
             {
-                if (step == 2)
+                if (step == 3)
                 {
                     Slider.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(195, -366, 0);
                     //wantFood.SetActive(false);
@@ -119,6 +128,17 @@ public class ChangeUI : MonoBehaviour
         button.SetActive(true);
     }
 
+    public void ShowDetail()
+    {
+        if (Detail.activeSelf)
+        {
+            Detail.SetActive(false);
+        }
+        else
+        {
+            Detail.SetActive(true);
+        }
+    }
 
 
 }

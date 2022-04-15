@@ -58,9 +58,9 @@ public class GridEnvironment : Environment
         agentPos = GameObject.Find("agent(Clone)").transform.position;
         if (GameObject.FindGameObjectsWithTag("food").Length > 0)
         {
-            foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
-            foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
-            foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
+            //foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
+            //foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
+            //foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
         }
         
         foreach (GameObject actor in actorObjs)
@@ -207,7 +207,7 @@ public class GridEnvironment : Environment
             //Debug.Log(value_estimates[i]);
             if(value_estimates[i] > 0)
             {
-                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32((byte)((255 - (225 * value_estimates[i]*2))), 255,0,255));
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32((byte)((255 - (225 * value_estimates[i]*1.5))), 255,0,255));
                 Debug.Log((255 - (225 * value_estimates[i])));
                 //transform.GetComponent<GrassManager>().ChangeColor(x, y, Color.green);
 
@@ -217,7 +217,14 @@ public class GridEnvironment : Environment
             {
                // Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
                // value.GetComponent<Renderer>().material = newMat;
-                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*2))),0,255));
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*1.5))),0,255));
+            }
+
+            if (value_estimates[i] == 0)
+            {
+                // Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
+                // value.GetComponent<Renderer>().material = newMat;
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, 255 , 0, 255));
             }
         }
     }
@@ -236,7 +243,7 @@ public class GridEnvironment : Environment
         
         foreach (GameObject actor in GameObject.FindGameObjectsWithTag("food"))
         {
-            Destroy(actor);
+            //Destroy(actor);
         }
         //actorObjs = new List<GameObject>();
 
@@ -261,8 +268,8 @@ public class GridEnvironment : Environment
             }
             if (players[i] == "food")
             {
-                GameObject actorObj = Instantiate(foodprefeb);
-                foodprefeb.transform.position = foodPos[i-2];
+                //GameObject actorObj = Instantiate(foodprefeb);
+                //foodprefeb.transform.position = foodPos[i-2];
 
             }
         }
@@ -403,7 +410,7 @@ public class GridEnvironment : Environment
         {
             reward = -0.5f;
             done = false;
-            Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
+            //Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
             //destory(hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject);
         }
         if (hitObjects.Where(col => col.gameObject.tag == "largegoal").ToArray().Length == 1)
