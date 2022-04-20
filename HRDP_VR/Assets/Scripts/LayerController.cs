@@ -16,7 +16,7 @@ public class LayerController : MonoBehaviour
     //Painting folder
 
     public GameObject Painting_Folder;//
-    static Vector3 Painting_Folder_position = new Vector3(27.4f, 1.4f, 1.7f);//new Vector3(-1, 5, 10);
+    static Vector3 Painting_Folder_position = new Vector3(27.4f, 1f, 1.7f);//new Vector3(-1, 5, 10);
     public GameObject Cur_Painting;
 
     public static List<GameObject> cur_painting_lists;
@@ -51,8 +51,8 @@ public class LayerController : MonoBehaviour
     }
     public void Receive_Distribution_Vec3(Vector3 distribution_UI)
     {
-        viz_start = true;
         distribution = distribution_UI;
+        viz_start = true;
     }
     private void Update()
     {
@@ -111,12 +111,14 @@ public class LayerController : MonoBehaviour
     {
         if (Cur_Painting)
         {//rotationSpeed,
-            Painting_Folder.transform.Rotate(Vector3.up, rotationSpeed*20*Time.deltaTime, Space.Self);
+            //Painting_Folder.transform.Rotate(Vector3.up, rotationSpeed*20*Time.deltaTime, Space.Self);
 
             //Cur_Painting.transform.RotateAround(Painting_Folder_position, Vector3.up, rotationSpeed * 20 * Time.deltaTime); 
 
             //Cur_Painting.transform.Rotate(new Vector3(0, rotationSpeed, 0),  Space.Self); //new Vector3(0, rotationSpeed, 0), Space.Self (27.4f, 1.4f, 1.7f)
             //Cur_Painting.transform.rotation = Quaternion.AngleAxis(30, Vector3.up) * Cur_Painting.transform.rotation;
+
+            Painting_Folder.transform.rotation = Quaternion.AngleAxis(10* rotationSpeed , Vector3.up) * Painting_Folder.transform.rotation;
         }
     }
     public void Spread(float interval)
@@ -133,7 +135,11 @@ public class LayerController : MonoBehaviour
         if (Cur_Painting){
             var zoomVal = zoom * zoom;
             Painting_Folder.transform.localScale = new Vector3(zoomVal, zoomVal, zoomVal);
-            
+
+            //foreach (var painting in cur_painting_lists)
+            //{
+            //    painting.transform.localScale = new Vector3(zoomVal, zoomVal, zoomVal);
+            //}
         }
     }
 }

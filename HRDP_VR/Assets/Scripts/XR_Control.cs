@@ -41,18 +41,18 @@ public class XR_Control : MonoBehaviour
     void Update()
     {
             //Right hand trigger
-            leftHand.TryGetFeatureValue(CommonUsages.gripButton, out bool test);
-        
-            
-            //leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test1);
-            //Debug.Log(test1);
-            //Debug.Log(test);
-            //rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test3);
-            //rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test4);
-            //Debug.Log(test3);
-            //Debug.Log(test4);
+            leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test);//gripButton
 
-            leftTriggerValue = test;
+
+        //leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test1);
+        //Debug.Log(test1);
+        //Debug.Log(test);
+        //rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test3);
+        //rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out bool test4);
+        //Debug.Log(test3);
+        //Debug.Log(test4);
+
+        leftTriggerValue = test;
             if (leftTriggerValue)
             {
                 if (!cur_UI_state)

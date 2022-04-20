@@ -8,9 +8,13 @@ public class UI_Mgr : MonoBehaviour
     public GameObject LeftHand;
     public GameObject Img_Showcase;
     public GameObject Painting_Folder;
-
+    //All the slider
     public Slider k_slider;
+    public Slider rotation_slider;
+    public Slider spread_slider;
+    public Slider zoom_slider;
     
+
     public GameObject Choose_Img_UI;
     public GameObject Change_Distribution_UI;
     public List<Sprite> textures;
@@ -18,9 +22,10 @@ public class UI_Mgr : MonoBehaviour
     //Image change to last one
     public int K;
     //3 index
-    private float rotation_speed = 0f;
-    private float spread = 0f;
-    private float zoom = 1f;
+    private Vector3 default_distribution = new Vector3(0, 0, 0.5f);
+    private float rotation_speed;
+    private float spread;
+    private float zoom;
 
     public bool viz_start = false;
     private void Start()
@@ -28,6 +33,9 @@ public class UI_Mgr : MonoBehaviour
         Choose_Img_UI.SetActive(true);
         Change_Distribution_UI.SetActive(false);
         transform.gameObject.SetActive(false);
+
+        Reset_distribution();
+
     }
     private void Update()
     {
@@ -80,13 +88,16 @@ public class UI_Mgr : MonoBehaviour
 
     public void Hit_Visualize()
     {
-        viz_start = true;
+        
         //LayerController.
         Vector2 res = new Vector2(K, image_index);
         Painting_Folder.SendMessage("Generate_Image_Default", res);
         //Hide before, show next
         Choose_Img_UI.SetActive(false);
         Change_Distribution_UI.SetActive(true);
+
+        Reset_distribution();
+        viz_start = true;
     }
     public void Hit_Back_Btn()
     {
@@ -94,6 +105,7 @@ public class UI_Mgr : MonoBehaviour
         Choose_Img_UI.SetActive(true);
         Change_Distribution_UI.SetActive(false);
     }
+    //Set UI's value to real value
     public void SetRotationSpeed(float rotateSpeedUpdate)
     {
         rotation_speed = (float)(Mathf.Round(rotateSpeedUpdate * 100)) / 100; ;
@@ -110,12 +122,20 @@ public class UI_Mgr : MonoBehaviour
     {
         zoom = (float)(Mathf.Round(zoom_val * 100)) / 100;
         //Debug.Log(zoom_val);
-
+        
     }
 
     public void SetK()
     {
         K = (int) k_slider.value; 
+    }
+    //Set my Value to UI
+    public void Reset_distribution()
+    {
+        //reset the customization
+        rotation_slider.value = rotation_speed = default_distribution.x;
+        spread_slider.value = spread = default_distribution.y;
+        zoom_slider.value = zoom = default_distribution.z;
     }
 
 }
