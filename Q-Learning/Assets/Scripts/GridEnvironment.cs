@@ -22,11 +22,18 @@ public class GridEnvironment : Environment
     public Animator AIanimator;
     public GameObject StartButton;
     public GameObject ResetButton;
-
+    public GameObject QuitButton;
+    public GameObject correct;
+    public GameObject wrong;
+    public int trainingtimes;
+    public Text trainingtimeUI;
+    bool firsteat = true;
+    bool firstkill = true;
     void Start()
     {
         maxSteps = 100;
         waitTime = 0.001f;
+        trainingtimes = 0;
         //BeginNewGame();
     }
 
@@ -47,14 +54,15 @@ public class GridEnvironment : Environment
         {
             StartButton.SetActive(false);
             ResetButton.SetActive(true);
+            QuitButton.SetActive(true);
             
         }
         agentPos = GameObject.Find("agent(Clone)").transform.position;
         if (GameObject.FindGameObjectsWithTag("food").Length > 0)
         {
-            foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
-            foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
-            foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
+            //foodPos[0] = GameObject.FindGameObjectsWithTag("food")[0].transform.position;
+            //foodPos[1] = GameObject.FindGameObjectsWithTag("food")[1].transform.position;
+            //foodPos[2] = GameObject.FindGameObjectsWithTag("food")[2].transform.position;
         }
         
         foreach (GameObject actor in actorObjs)
@@ -115,8 +123,24 @@ public class GridEnvironment : Environment
     // Update is called once per frame
     void Update()
     {
-        waitTime = 1.0f - GameObject.Find("Slider").GetComponent<Slider>().value;
-        RunMdp();
+        if (GameObject.Find("Slider").GetComponent<Slider>().value == 0)
+        {
+            waitTime = 0.3f;
+        }
+        else if(GameObject.Find("Slider").GetComponent<Slider>().value == 1)
+        {
+            waitTime = 0.1f;
+        }
+        else if(GameObject.Find("Slider").GetComponent<Slider>().value == 2)
+        {
+            waitTime = 0.001f;
+        }
+        //waitTime = 1.0f - GameObject.Find("Slider").GetComponent<Slider>().value;
+        if (run)
+        {
+            RunMdp();
+        }
+        
     }
 
     /// <summary>
@@ -197,6 +221,13 @@ public class GridEnvironment : Environment
                // value.GetComponent<Renderer>().material = newMat;
                 transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, (byte)((255 + (225 * value_estimates[i]*1.5))),0,255));
             }
+
+            if (value_estimates[i] == 0)
+            {
+                // Material newMat = Resources.Load("negative_mat", typeof(Material)) as Material;
+                // value.GetComponent<Renderer>().material = newMat;
+                transform.GetComponent<GrassManager>().ChangeColor(x, y, new Color32(255, 255 , 0, 255));
+            }
         }
     }
 
@@ -206,9 +237,15 @@ public class GridEnvironment : Environment
     public override void Reset()
     {
         base.Reset();
+        trainingtimes++;
+        if (trainingtimeUI != null)
+        {
+            trainingtimeUI.text = "Iteration: " + trainingtimes;
+        }
+        
         foreach (GameObject actor in GameObject.FindGameObjectsWithTag("food"))
         {
-            Destroy(actor);
+            //Destroy(actor);
         }
         //actorObjs = new List<GameObject>();
 
@@ -233,8 +270,8 @@ public class GridEnvironment : Environment
             }
             if (players[i] == "food")
             {
-                GameObject actorObj = Instantiate(foodprefeb);
-                foodprefeb.transform.position = foodPos[i-2];
+                //GameObject actorObj = Instantiate(foodprefeb);
+                //foodprefeb.transform.position = foodPos[i-2];
 
             }
         }
@@ -268,7 +305,7 @@ public class GridEnvironment : Environment
     public override void MiddleStep(int action)
     {
         reward = -0.05f;
-        
+        float time = waitTime;
         // 0 - Forward, 1 - Backward, 2 - Left, 3 - Right
         if (action == 3)
         {
@@ -277,7 +314,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x+1, -0.45f, visualAgent.transform.position.z), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x+1, -0.45f, visualAgent.transform.position.z), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -290,7 +327,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x - 1, -0.45f, visualAgent.transform.position.z), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x - 1, -0.45f, visualAgent.transform.position.z), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -303,7 +340,7 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z+1), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z+1), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
@@ -316,28 +353,66 @@ public class GridEnvironment : Environment
             Collider[] blockTest = Physics.OverlapBox(new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1), new Vector3(0.3f, 0.3f, 0.3f));
             if (blockTest.Where(col => col.gameObject.tag == "wall").ToArray().Length == 0)
             {
-                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z-1), waitTime));
+                StartCoroutine(MoveTo(visualAgent.transform, new Vector3(visualAgent.transform.position.x, -0.45f, visualAgent.transform.position.z-1), time));
                 //visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1);
                 visualAgent.transform.rotation = Quaternion.Euler(rotationVector);
             }
         }
+        StartCoroutine(CheckGoal(time,action));
+        
+        //GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
 
+    }
+
+    IEnumerator CheckGoal(float time,int action)
+    {
+        yield return new WaitForSeconds(time);
         Collider[] hitObjects = Physics.OverlapBox(visualAgent.transform.position, new Vector3(0.3f, 0.3f, 0.3f));
         if (hitObjects.Where(col => col.gameObject.tag == "goal").ToArray().Length == 1)
         {
             reward = 1;
             done = true;
+            GameObject c = Instantiate(correct);
+            c.transform.position = hitObjects.Where(col => col.gameObject.tag == "goal").ToArray()[0].transform.position;
+            if(GameObject.Find("Slider").GetComponent<Slider>().value == 0||firsteat){
+                if (action == 0)
+                {
+                    visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z - 1);
+                }
+                else if (action == 1)
+                {
+                    visualAgent.transform.position = new Vector3(visualAgent.transform.position.x, 0, visualAgent.transform.position.z + 1);
+                }
+                else if (action == 2)
+                {
+                    visualAgent.transform.position = new Vector3(visualAgent.transform.position.x + 1, 0, visualAgent.transform.position.z);
+                }
+                else if (action == 3)
+                {
+                    visualAgent.transform.position = new Vector3(visualAgent.transform.position.x - 1, 0, visualAgent.transform.position.z);
+                }
+                firsteat = false;
+                playeatanimation = true;
+            }
+            
         }
         if (hitObjects.Where(col => col.gameObject.tag == "pit").ToArray().Length == 1)
         {
             reward = -1;
             done = true;
+            GameObject c = Instantiate(wrong);
+            c.transform.position = hitObjects.Where(col => col.gameObject.tag == "pit").ToArray()[0].transform.position;
+            if (GameObject.Find("Slider").GetComponent<Slider>().value == 0 || firstkill)
+            {
+                firstkill = false;
+                playdieanimation = true;
+            }
         }
         if (hitObjects.Where(col => col.gameObject.tag == "food").ToArray().Length == 1)
         {
             reward = -0.5f;
             done = false;
-            Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
+            //Destroy((hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject));
             //destory(hitObjects.Where(col => col.gameObject.tag == "food").ToArray()[0].gameObject);
         }
         if (hitObjects.Where(col => col.gameObject.tag == "largegoal").ToArray().Length == 1)
@@ -350,8 +425,6 @@ public class GridEnvironment : Environment
 
         LoadSpheres();
         episodeReward += reward;
-        //GameObject.Find("RTxt").GetComponent<Text>().text = "Episode Reward: " + episodeReward.ToString("F2");
-
     }
 
 

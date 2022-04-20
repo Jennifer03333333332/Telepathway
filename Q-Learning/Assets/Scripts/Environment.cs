@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnvironmentParameters {
 	public int state_size { get; set; }
@@ -31,7 +32,9 @@ public abstract class Environment : MonoBehaviour {
 	public float waitTime;
 	public int episodeCount;
 	public bool humanControl;
-
+	public bool playeatanimation=false;
+	public bool playdieanimation = false;
+	public bool run = true;
 	public int bumper;
 
 	public EnvironmentParameters envParameters;
@@ -124,13 +127,87 @@ public abstract class Environment : MonoBehaviour {
 	}
 
 	public virtual void RunMdp() {
+		
+		
 		if (acceptingSteps == true) {
 			if (done == false) {
 				Step ();
 			} 
-			else {
-				Reset ();
+			else if(done==true){
+                if (!playeatanimation&&!playdieanimation)
+                {
+					Reset();
+				}
+                else if(playeatanimation)
+                {
+					Debug.Log("11");
+					run = false;
+					StartCoroutine(EatAnimation());
+					
+                }
+				else if (playdieanimation)
+                {
+					run = false;
+					StartCoroutine(DieAnimation());
+				}
+				
 			}
 		}
+	}
+
+	IEnumerator EatAnimation()
+    {
+
+		if (SoundMgr.Instance != null)
+		{
+			
+			SoundMgr.Instance.PlaySound(5);
+			SoundMgr.Instance.PlaySound(7);
+			
+		}
+		//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
+		//yield return new WaitForSeconds(2f);
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetTrigger("Eat");
+			GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
+			//yield return new WaitForSeconds(1f);
+			//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Idle", 0);
+			yield return new WaitForSeconds(2f);
+		if (SoundMgr.Instance != null)
+		{
+
+			
+			SoundMgr.Instance.PlaySound(7);
+
+		}
+		yield return new WaitForSeconds(2f);
+
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 1);
+		
+		playeatanimation = false;
+		Reset();
+		run = true;
+    }
+
+	IEnumerator DieAnimation()
+	{
+        if (SoundMgr.Instance != null)
+        {
+			SoundMgr.Instance.PlayDieSound();
+			SoundMgr.Instance.PlaySound(6);
+		}
+		
+		//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
+		//yield return new WaitForSeconds(2f);
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetTrigger("Die");
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 0);
+		//yield return new WaitForSeconds(1f);
+		//GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Idle", 0);
+		yield return new WaitForSeconds(4f);
+
+		GameObject.FindGameObjectWithTag("agent").GetComponent<Animator>().SetInteger("Move", 1);
+
+		playdieanimation = false;
+		Reset();
+		run = true;
 	}
 }

@@ -21,20 +21,36 @@ public class CreateGoal : MonoBehaviour
     public GameObject AIagent;
     public GameObject AIImage;
     public GameObject startButton;
-
+    public GameObject HighlightPrefeb;
+    GameObject highlight;
     GameObject MovingObject;
+    Vector3 agentpos;
     int current = -1;
     // Start is called before the first frame update
     void Start()
     {
         AIagent = GameObject.FindGameObjectWithTag("agent");
+        if (AIagent != null)
+        {
+            agentpos = AIagent.transform.position;
+        }
+        //agentpos = AIagent.transform.position;
+        highlight = Instantiate(HighlightPrefeb);
+        highlight.SetActive(false);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (AIagent == null)
+        {
+            if (GameObject.FindGameObjectWithTag("agent") != null)
+            {
+                AIagent = GameObject.FindGameObjectWithTag("agent");
+                agentpos = AIagent.transform.position;
+            }
+        }
         
         
         if (Input.GetMouseButtonDown(0) && !isMouseDown)
@@ -77,13 +93,79 @@ public class CreateGoal : MonoBehaviour
 
 
         }
+        if (isMouseDown)
+        {
+            Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Plane")
+                {
+                    highlight.SetActive(true);
+                    Debug.Log(hit.transform.position);
+                    offset = hit.point;
+                    offset.y = -0.3f;
+                    int a = (int)offset.x;
+                    int b = (int)offset.z;
+                    if (offset.x > 0)
+                    {
+                        if (offset.x - a < 0.5f)
+                        {
+                            offset.x = a;
+                        }
+                        else
+                        {
+                            offset.x = a + 1;
+                        }
+                    }
+                    else
+                    {
+                        if (offset.x - a > -0.5f)
+                        {
+                            offset.x = a;
+                        }
+                        else
+                        {
+                            offset.x = a - 1;
+                        }
+                    }
+                    if (offset.z > 0)
+                    {
+                        if (offset.z - b < 0.5f)
+                        {
+                            offset.z = b;
+                        }
+                        else
+                        {
+                            offset.z = b + 1;
+                        }
+                    }
+                    else
+                    {
+                        if (offset.z - b > -0.5f)
+                        {
+                            offset.z = b;
+                        }
+                        else
+                        {
+                            offset.z = b - 1;
+                        }
+                    }
+                    highlight.transform.position = offset;
+                }
+                else
+                {
+                    highlight.SetActive(false);
+                }
+            }
+        }
         
         if (Input.GetMouseButtonUp(0))
         {
             if (isMouseDown)
             {
                 Destroy(MovingObject);
-
+                highlight.SetActive(false);
                 Ray ray = Camera.main.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
@@ -142,10 +224,14 @@ public class CreateGoal : MonoBehaviour
                         if (current == 2 )
                         {
                             Debug.Log(offset);
-                            if (AIagent==null || (offset.x != AIagent.transform.position.x||offset.z!=AIagent.transform.position.z))
+                            if (AIagent==null || (offset.x != agentpos.x||offset.z!= agentpos.z))
                             {
                                 
                                 GameObject pit = Instantiate(PitPrefeb);
+                                if (SoundMgr.Instance != null)
+                                {
+                                    SoundMgr.Instance.PlaySound(4);
+                                }
                                 pit.transform.position = new Vector3(offset.x,-0.4f,offset.z);
                                 if(SceneManager.GetActiveScene().name == "Level 3")
                                 {
@@ -157,9 +243,13 @@ public class CreateGoal : MonoBehaviour
                         }
                         else if (current == 1)
                         {
-                            if (AIagent == null || (offset.x != AIagent.transform.position.x || offset.z != AIagent.transform.position.z))
+                            if (AIagent == null || (offset.x != agentpos.x || offset.z != agentpos.z))
                             {
                                 GameObject goal = Instantiate(GoalPrefeb);
+                                if (SoundMgr.Instance != null)
+                                {
+                                    SoundMgr.Instance.PlaySound(3);
+                                }
                                 offset.y = -0.4f;
                                 goal.transform.position = offset;
                                 if (SceneManager.GetActiveScene().name == "Level 2")
@@ -178,6 +268,10 @@ public class CreateGoal : MonoBehaviour
                         else if (current == 0)
                         {
                             GameObject ai = Instantiate(AIPrefeb);
+                            if (SoundMgr.Instance != null)
+                            {
+                                SoundMgr.Instance.PlaySound(4);
+                            }
                             ai.transform.position = offset;
                             AIagent = ai;
                             AIImage.SetActive(false);
@@ -187,6 +281,11 @@ public class CreateGoal : MonoBehaviour
                         {
                             GameObject food = Instantiate(FoodPrefeb);
                             food.transform.position = new Vector3(offset.x, -0.45f, offset.z);
+                            if (SoundMgr.Instance != null)
+                            {
+                                SoundMgr.Instance.PlaySound(4);
+                            }
+                           
                             if (SceneManager.GetActiveScene().name == "Level 4")
                             {
                                 GameObject.Find("GameManager").GetComponent<ChangeUI>().CountLava();

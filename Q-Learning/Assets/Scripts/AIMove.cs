@@ -178,6 +178,7 @@ public class AIMove : MonoBehaviour
                     AIagent.transform.rotation = Quaternion.Euler(rotationVector);
                 }
             }
+            
             yield return new WaitForSeconds(movetime);
         }
         
