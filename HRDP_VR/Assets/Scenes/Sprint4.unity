@@ -3129,8 +3129,8 @@ MonoBehaviour:
   Img_Showcase: {fileID: 308620160}
   Painting_Folder: {fileID: 1217306109}
   k_slider: {fileID: 589141566}
-  spread_slider: {fileID: 0}
   rotation_slider: {fileID: 0}
+  spread_slider: {fileID: 0}
   zoom_slider: {fileID: 0}
   Choose_Img_UI: {fileID: 471987380}
   Change_Distribution_UI: {fileID: 348255404}
@@ -8411,8 +8411,8 @@ MonoBehaviour:
   Img_Showcase: {fileID: 47615156}
   Painting_Folder: {fileID: 1217306109}
   k_slider: {fileID: 1160965228}
-  spread_slider: {fileID: 7081780984807354586}
   rotation_slider: {fileID: 7982135509127734317}
+  spread_slider: {fileID: 7081780984807354586}
   zoom_slider: {fileID: 6924985383275339290}
   Choose_Img_UI: {fileID: 301381910}
   Change_Distribution_UI: {fileID: 8035173025522107182}
@@ -34107,8 +34107,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 3187321394668591987}
   m_HandleRect: {fileID: 1206250299906227418}
   m_Direction: 0
-  m_MinValue: -1
-  m_MaxValue: 1
+  m_MinValue: -0.5
+  m_MaxValue: 0.5
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
