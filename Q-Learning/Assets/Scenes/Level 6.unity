@@ -5448,7 +5448,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: '"Thank you!" With your help, the little dinosour learned how to survive.
+  m_Text: '"Thank you!" With your help, the little dinosaur learned how to survive.
     He really wants to stay with you. Now, feel free to explore any possibilities.'
 --- !u!222 &811790631
 CanvasRenderer:

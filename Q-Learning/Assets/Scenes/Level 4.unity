@@ -1732,7 +1732,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: "Click Start Training button. \n\nGuess which road the dinosour will choose."
+  m_Text: "Click Start Training button. \n\nGuess which road the dinosaur will choose."
 --- !u!222 &96923288
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5939,8 +5939,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: "You may notice that sometimes the dinosour will not follow the optimal
-    way it found. \nThis is because the dinosour still wants to try if there is a
+  m_Text: "You may notice that sometimes the dinosaur will not follow the optimal
+    way it found. \nThis is because the dinosaur still wants to try if there is a
     better way."
 --- !u!222 &548623783
 CanvasRenderer:
@@ -14691,7 +14691,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Drag the stone to the environment. '
+  m_Text: 'Drag the rock to the environment. '
 --- !u!222 &1721417899
 CanvasRenderer:
   m_ObjectHideFlags: 0

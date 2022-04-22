@@ -1448,6 +1448,7 @@ MonoBehaviour:
   AIanimator: {fileID: 854834745}
   StartButton: {fileID: 0}
   ResetButton: {fileID: 0}
+  QuitButton: {fileID: 0}
   correct: {fileID: 3178285247426274221, guid: dcc2fddf302b3ea4ba61ab2ff4c0360d, type: 3}
   wrong: {fileID: 4407381472059892180, guid: 467bb17c03f05a245a5233cbf76945f2, type: 3}
   trainingtimes: 0
@@ -9677,8 +9678,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: You may notice that the grass changes color when the dinosour reach that
-    square. That's how the dinosour remeber the world. The greener the grass, the
+  m_Text: You may notice that the grass changes color when the dinosaur reach that
+    square. That's how the dinosaur remember the world. The greener the grass, the
     safer it is for getting to that goal. The redder it is, the more risky, and the
     more likely it leads to lava or rocks.
 --- !u!222 &1496199925
@@ -13006,7 +13007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: Click Start Training button. Guess which meat the dinosour will choose.
+  m_Text: Click Start Training button. Guess which meat the dinosaur will choose.
 --- !u!222 &1979107376
 CanvasRenderer:
   m_ObjectHideFlags: 0

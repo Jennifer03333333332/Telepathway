@@ -6966,9 +6966,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: "Great! It looks like he\u2019s moving all over! He can definitely get
-    anywhere he needs to go now.\n\nBut\u2026 where should he go? Without a goal, 
-    he will just walk around randomly forever\u2026 \n\n"
+  m_Text: "It looks like he\u2019s moving all over! He can definitely get anywhere
+    he needs to go now.\n\nBut\u2026 where should he go? Without a goal,  he will
+    just walk around randomly forever\u2026 \n\n"
 --- !u!222 &1214885736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7770,7 +7770,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
-  m_Text: "The little dinosour doesn\u2019t know how to walk yet, so he is trying
+  m_Text: "The little dinosaur doesn\u2019t know how to walk yet, so he is trying
     to learn how go forward, backwards, left and right\r\n\n\n\n"
 --- !u!222 &1391012893
 CanvasRenderer:
