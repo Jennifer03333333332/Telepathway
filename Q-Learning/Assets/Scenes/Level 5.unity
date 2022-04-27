@@ -3424,7 +3424,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1.25
   m_Text: "Now, change the environment during the training time. \n\nDrag the lava
-    to environment to see how dinosaur react."
+    to environment to see how the dinosaur reacts."
 --- !u!222 &488213226
 CanvasRenderer:
   m_ObjectHideFlags: 0
