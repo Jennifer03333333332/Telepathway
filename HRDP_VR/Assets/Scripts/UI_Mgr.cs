@@ -22,7 +22,7 @@ public class UI_Mgr : MonoBehaviour
     //Image change to last one
     public int K;
     //3 index
-    private Vector3 default_distribution = new Vector3(0, 0, 0.5f);
+    private Vector3 default_distribution = new Vector3(0, 0, 0.7f);
     private float rotation_speed;
     private float spread;
     private float zoom;
@@ -108,7 +108,7 @@ public class UI_Mgr : MonoBehaviour
     //Set UI's value to real value
     public void SetRotationSpeed(float rotateSpeedUpdate)
     {
-        rotation_speed = (float)(Mathf.Round(rotateSpeedUpdate * 100)) / 100; ;
+        rotation_speed = (float)(Mathf.Round(rotateSpeedUpdate * 10)) / 10; ;
         //Debug.Log(rotation_speed);
     }
     public void SetSpread(float spread_val)
